@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,48 +8,13 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".MainActivity"
-    tools:ignore="UsingOnClickInXml"
     >
-
-    <TextView
-        android:id="@+id/countLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/count_label"
-        android:textSize="22sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/questionLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/question_label"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="60dp"
-        >
-    </TextView>
-
-    <Button
-        android:id="@+id/answerBtn1"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:text="@string/true_btn_answer"
-        android:layout_marginTop="80dp"
-        style="?attr/materialButtonOutlinedStyle"
-        android:onClick="checkAnswer"
-        >
-    </Button>
-    <Button
-        android:id="@+id/answerBtn2"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:text="@string/false_btn_answer"
-        android:layout_marginTop="6dp"
-        style="?attr/materialButtonOutlinedStyle"
-        android:onClick="checkAnswer"
-        >
-    </Button>
-
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_weight="1"
+        app:navGraph="@navigation/nav_graph"
+        />
 </LinearLayout>
