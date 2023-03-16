@@ -10,4 +10,10 @@
     <string name="quiz_result_fragment">Quiz Result Fragment</string>
     <string name="quiz_app_button">Quiz</string>
     <string name="go_home_btn">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gameTitleString"><![CDATA[Think & Guess]]></string>
+    <string name="enterYourName">Enter your name!</string>
+    <string name="startString">Start</string>
+    <string name="welcome_to">Welcome To</string>
 </resources>

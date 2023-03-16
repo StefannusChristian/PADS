@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainPageFragment">
+    app:startDestination="@id/enterNameFragment">
     <fragment
         android:id="@+id/quizQuestionsFragment"
         android:name="com.example.simplequizapp.QuizQuestionsFragment"
@@ -37,5 +37,14 @@
         <action
             android:id="@+id/action_mainPageFragment_to_quizQuestionsFragment"
             app:destination="@id/quizQuestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterNameFragment"
+        android:name="com.example.simplequizapp.EnterNameFragment"
+        android:label="fragment_enter_name"
+        tools:layout="@layout/fragment_enter_name" >
+        <action
+            android:id="@+id/action_enterNameFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
     </fragment>
 </navigation>
