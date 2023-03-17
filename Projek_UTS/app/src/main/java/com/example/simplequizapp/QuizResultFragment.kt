@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.simplequizapp.databinding.FragmentQuizResultBinding
 
 class QuizResultFragment : Fragment() {
     private lateinit var binding: FragmentQuizResultBinding
+    private lateinit var viewModel: SharedViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,7 +24,8 @@ class QuizResultFragment : Fragment() {
 
         binding.goHomeBtn.setOnClickListener{
             val navController = view.findNavController()
-            val goHome = QuizResultFragmentDirections.actionQuizResultFragmentToMainPageFragment()
+            viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+            val goHome = QuizResultFragmentDirections.actionQuizResultFragmentToMainPageFragment(viewModel.userName)
             navController.navigate(goHome)
         }
         binding.tryAgainBtn.setOnClickListener{

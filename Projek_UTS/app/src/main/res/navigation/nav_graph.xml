@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_quizQuestionsFragment"
             app:destination="@id/quizQuestionsFragment" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/enterNameFragment"

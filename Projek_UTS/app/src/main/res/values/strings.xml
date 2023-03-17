@@ -16,4 +16,5 @@
     <string name="enterYourName">Enter your name!</string>
     <string name="startString">Start</string>
     <string name="welcome_to">Welcome To</string>
+    <string name="guessing_game">Guessing Game</string>
 </resources>

@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainPageFragment">
-    
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/welcome_to"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="@+id/thinkGuessWelcomeText"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="@+id/thinkGuessWelcomeText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/thinkGuessWelcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/gameTitleString"
+        android:textSize="48sp"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        tools:layout_editor_absoluteX="45dp" />
+
     <Button
         android:id="@+id/quizBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:text="@string/quiz_app_button"
-        >
+        app:layout_constraintEnd_toStartOf="@+id/goToGuessGameBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNametv">
+
     </Button>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/goToGuessGameBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/guessing_game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/quizBtn"
+        app:layout_constraintTop_toBottomOf="@+id/userNametv" />
+
+    <TextView
+        android:id="@+id/userNametv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/thinkGuessWelcomeText"
+        app:layout_constraintStart_toStartOf="@+id/thinkGuessWelcomeText"
+        app:layout_constraintTop_toBottomOf="@+id/thinkGuessWelcomeText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
