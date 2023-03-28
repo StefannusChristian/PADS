@@ -4,22 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
     tools:context=".EnterNameFragment">
 
     <TextView
         android:id="@+id/gameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="132dp"
         android:text="@string/gameTitleString"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,14 +26,13 @@
         android:id="@+id/etName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/enterYourName"
         android:inputType="textPersonName"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/gameTitle"
-        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/gameTitle"
         app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
 
@@ -45,19 +43,8 @@
         android:layout_marginTop="36dp"
         android:text="@string/startString"
         app:layout_constraintEnd_toEndOf="@+id/etName"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="@+id/etName"
         app:layout_constraintTop_toBottomOf="@+id/etName" />
-
-    <TextView
-        android:id="@+id/currUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/current_username"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/gameStartBtn"
-        app:layout_constraintStart_toStartOf="@+id/gameStartBtn"
-        app:layout_constraintTop_toBottomOf="@+id/gameStartBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

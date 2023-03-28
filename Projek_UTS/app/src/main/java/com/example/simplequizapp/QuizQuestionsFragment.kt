@@ -52,8 +52,8 @@ class QuizQuestionsFragment : Fragment() {
         binding = FragmentQuizQuestionsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        showNextQuiz()
         quizData.shuffle()
+        showNextQuiz()
 
         return view
     }

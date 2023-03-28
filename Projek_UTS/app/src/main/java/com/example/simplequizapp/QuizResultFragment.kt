@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.simplequizapp.databinding.FragmentQuizResultBinding
 
@@ -22,12 +21,6 @@ class QuizResultFragment : Fragment() {
         val score = QuizResultFragmentArgs.fromBundle(requireArguments()).rightAnswerCount
         binding.resultLabel.text = getString(R.string.result_score,score)
 
-        binding.goHomeBtn.setOnClickListener{
-            val navController = view.findNavController()
-            viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-            val goHome = QuizResultFragmentDirections.actionQuizResultFragmentToMainPageFragment(viewModel.userName)
-            navController.navigate(goHome)
-        }
         binding.tryAgainBtn.setOnClickListener{
             val navController = view.findNavController()
             val goQuiz = QuizResultFragmentDirections.actionQuizResultFragmentToQuizQuestionsFragment()

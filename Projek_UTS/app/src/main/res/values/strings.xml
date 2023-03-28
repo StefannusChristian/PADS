@@ -1,4 +1,5 @@
 <resources>
+<!--    Guessing Game -->
     <string name="app_name">SimpleQuizApp</string>
     <string name="count_label">Q%d</string>
     <string name="question_label">Question</string>
@@ -9,12 +10,16 @@
     <string name="btn_try_again">Try Again</string>
     <string name="quiz_result_fragment">Quiz Result Fragment</string>
     <string name="quiz_app_button">Quiz</string>
-    <string name="go_home_btn">Home</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="gameTitleString"><![CDATA[Think & Guess]]></string>
     <string name="enterYourName">Enter your name!</string>
     <string name="startString">Start</string>
     <string name="welcome_to">Welcome To</string>
     <string name="guessing_game">Guessing Game</string>
+    <string name="emptyName">Please Enter Your Name!</string>
+    <string name="homeTitle">Home</string>
+    <string name="chooseGame">Choose</string>
+    <string name="current_username">Current Username: %s</string>
+    <string name="current_username_none">\"\"</string>
+    <!--    Guess Word Game -->
 </resources>

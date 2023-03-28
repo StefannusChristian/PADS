@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f631d65b-469f-47c9-b2d5-562ac1c5c9ff" name="Changes" comment="" />
+    <list default="true" id="f631d65b-469f-47c9-b2d5-562ac1c5c9ff" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Projek_UTS/.idea/deploymentTargetDropDown.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +14,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2N6DvQ0y2UOp4lwYn1aTwybcvmm" />
   <component name="ProjectViewState">
@@ -24,7 +29,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/chris/Kuliah/semester6/PADS",
+    "last_opened_file_path": "C:/Users/chris/Kuliah/semester6/PADS/Projek_UTS",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>

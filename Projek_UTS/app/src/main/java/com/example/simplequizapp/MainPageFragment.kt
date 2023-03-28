@@ -18,14 +18,14 @@ class MainPageFragment : Fragment() {
     ): View? {
         binding = FragmentMainPageBinding.inflate(inflater, container, false)
         val view = binding.root
-        val userName = MainPageFragmentArgs.fromBundle(requireArguments()).userName
         val userNameTv = binding.userNametv
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        userNameTv.text = viewModel.userName
+        userNameTv.text = viewModel.userName.value
         binding.quizBtn.setOnClickListener{
             val navController = view.findNavController()
             navController.navigate(R.id.action_mainPageFragment_to_quizQuestionsFragment)
         }
+
         return view
     }
 
