@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.SimpleQuizApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/citDarkRed</item>
+        <item name="colorPrimaryVariant">@color/cit2ndRedDark</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/citDarkYellow</item>
+        <item name="colorSecondaryVariant">@color/cit2ndYellowDark</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

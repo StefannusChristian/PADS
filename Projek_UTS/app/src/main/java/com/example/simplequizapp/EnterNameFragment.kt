@@ -1,6 +1,7 @@
 package com.example.simplequizapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.simplequizapp.databinding.FragmentEnterNameBinding
+import kotlin.math.log
 
 class EnterNameFragment : Fragment() {
     private lateinit var binding: FragmentEnterNameBinding
@@ -55,7 +57,7 @@ class EnterNameFragment : Fragment() {
             if (name.isNotEmpty()) {
                 currUserNameTv?.text = getString(R.string.current_username, name)
             } else {
-                currUserNameTv?.text = getString(R.string.current_username_none)
+                currUserNameTv?.text = getString(R.string.current_username, "Guest")
             }
         }
 

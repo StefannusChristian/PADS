@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_quizQuestionsFragment"
             app:destination="@id/quizQuestionsFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_guessGameFragment"
+            app:destination="@id/guessGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/enterNameFragment"
@@ -46,5 +49,31 @@
         <action
             android:id="@+id/action_enterNameFragment_to_mainPageFragment"
             app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_enterNameFragment_to_aboutMeFragment2"
+            app:destination="@id/aboutMeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/guessGameFragment"
+        android:name="com.example.simplequizapp.GuessGameFragment"
+        android:label="fragment_guess_game"
+        tools:layout="@layout/fragment_guess_game" >
+        <action
+            android:id="@+id/action_guessGameFragment_to_guessResultFragment"
+            app:destination="@id/guessResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/guessResultFragment"
+        android:name="com.example.simplequizapp.GuessResultFragment"
+        android:label="fragment_guess_result"
+        tools:layout="@layout/fragment_guess_result" >
+        <action
+            android:id="@+id/action_guessResultFragment_to_guessGameFragment"
+            app:destination="@id/guessGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutMeFragment"
+        android:name="com.example.simplequizapp.AboutMeFragment"
+        android:label="fragment_about_me"
+        tools:layout="@layout/fragment_about_me" />
 </navigation>

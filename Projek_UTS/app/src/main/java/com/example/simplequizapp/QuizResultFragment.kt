@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.simplequizapp.databinding.FragmentQuizResultBinding
 
@@ -21,11 +22,24 @@ class QuizResultFragment : Fragment() {
         val score = QuizResultFragmentArgs.fromBundle(requireArguments()).rightAnswerCount
         binding.resultLabel.text = getString(R.string.result_score,score)
 
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
         binding.tryAgainBtn.setOnClickListener{
             val navController = view.findNavController()
             val goQuiz = QuizResultFragmentDirections.actionQuizResultFragmentToQuizQuestionsFragment()
             navController.navigate(goQuiz)
         }
+
+        val imageView = binding.winLoseImage
+
+        var youWinString = "YOU LOST!"
+        if (viewModel.isWinQuizGame) {
+            youWinString = "YOU WIN!"
+            imageView.setImageResource(R.drawable.won)
+        }
+        binding.resultTitleID.text = getString(R.string.result_title, youWinString)
+
         return view
     }
+
 }

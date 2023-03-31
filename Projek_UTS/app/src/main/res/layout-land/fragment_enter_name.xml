@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="@string/startString"
+        android:text="@string/nextString"
         app:layout_constraintEnd_toEndOf="@+id/etName"
         app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="@+id/etName"

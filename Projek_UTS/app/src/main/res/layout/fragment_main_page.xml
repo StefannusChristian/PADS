@@ -7,27 +7,17 @@
     tools:context=".MainPageFragment">
 
     <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/welcome_to"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/thinkGuessWelcomeText"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="@+id/thinkGuessWelcomeText"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/thinkGuessWelcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
         android:text="@string/gameTitleString"
-        android:textSize="48sp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/quizBtn"
@@ -47,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/guessing_game"
+        android:text="@string/hangman"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/quizBtn"
@@ -63,5 +53,37 @@
         app:layout_constraintEnd_toEndOf="@+id/thinkGuessWelcomeText"
         app:layout_constraintStart_toStartOf="@+id/thinkGuessWelcomeText"
         app:layout_constraintTop_toBottomOf="@+id/thinkGuessWelcomeText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/choose_a_game"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNametv" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/quiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizBtn" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/hangman"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goToGuessGameBtn"
+        app:layout_constraintVertical_bias="0.502" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

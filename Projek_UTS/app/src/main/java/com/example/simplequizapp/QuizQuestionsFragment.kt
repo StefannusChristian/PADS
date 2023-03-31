@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.simplequizapp.databinding.FragmentQuizQuestionsBinding
 
 class QuizQuestionsFragment : Fragment() {
 
+    private lateinit var viewModel: SharedViewModel
     private lateinit var binding: FragmentQuizQuestionsBinding
     private var rightAnswerCount:Int = 0
     private var quizCount:Int = 1
@@ -22,7 +24,7 @@ class QuizQuestionsFragment : Fragment() {
         mutableListOf("The official language of Indonesia is Malay.", false),
         mutableListOf("Indonesia has the largest Muslim population in the world.", true),
         mutableListOf("The capital of Indonesia is not Jakarta.", false),
-        mutableListOf("The currency of Indonesia is the rupiah.", true),
+        mutableListOf("The currency of Indonesia is rupiah.", true),
         mutableListOf("Indonesia has over 17,000 islands.", true),
         mutableListOf("Bali is a province of Indonesia.", true),
         mutableListOf("The Borobudur temple is located in Bali.", false),
@@ -49,6 +51,8 @@ class QuizQuestionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        viewModel.isWinQuizGame = false
         binding = FragmentQuizQuestionsBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -58,7 +62,7 @@ class QuizQuestionsFragment : Fragment() {
         return view
     }
 
-    fun showNextQuiz() {
+    private fun showNextQuiz() {
         val quiz = quizData[0]
         binding.questionLabel.text = quiz[0].toString()
         rightAnswer = quiz[1].toString().toBoolean()
@@ -68,7 +72,7 @@ class QuizQuestionsFragment : Fragment() {
         binding.countLabel.text = getString(R.string.count_label,quizCount)
     }
 
-    fun checkAnswer(view: View, userAnswer: Boolean){
+    private fun checkAnswer(view: View, userAnswer: Boolean){
         val answerBtn = view as Button
         val btnText = answerBtn.text.toString().toBoolean()
         val alertTitle:String
@@ -87,10 +91,12 @@ class QuizQuestionsFragment : Fragment() {
             .show()
     }
 
-    fun checkQuizCount(){
+    private fun checkQuizCount(){
         if (quizCount == QUIZ_COUNT){
             val navController = view?.findNavController()
-
+            if (rightAnswerCount > 7){
+                viewModel.isWinQuizGame = true;
+            }
             val action = QuizQuestionsFragmentDirections.actionQuizQuestionsFragmentToQuizResultFragment(rightAnswerCount)
             navController?.navigate(action)
         } else{

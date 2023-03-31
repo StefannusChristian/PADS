@@ -11,4 +11,10 @@
         android:title="@string/chooseGame"
         android:icon="@drawable/baseline_videogame_asset_24"
         />
+
+    <item
+        android:id="@+id/aboutMe"
+        android:title="@string/bottomNavAbout"
+        android:icon="@drawable/baseline_person_24"
+        />
 </menu>

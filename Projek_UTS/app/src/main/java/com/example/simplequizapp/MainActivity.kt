@@ -49,6 +49,11 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
                 }
+                R.id.aboutMe -> {
+                    // Navigate to the About Me
+                    navHostFragment.findNavController().navigate(R.id.aboutMeFragment)
+                    true
+                    }
                 // Handle other menu items if needed
                 else -> false
             }

@@ -1,6 +1,7 @@
 package com.example.simplequizapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,11 @@ import com.example.simplequizapp.databinding.FragmentMainPageBinding
 class MainPageFragment : Fragment() {
     private lateinit var binding: FragmentMainPageBinding
     private lateinit var viewModel: SharedViewModel
+    val TAG = "MainActivity"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         binding = FragmentMainPageBinding.inflate(inflater, container, false)
         val view = binding.root
         val userNameTv = binding.userNametv
@@ -24,6 +26,12 @@ class MainPageFragment : Fragment() {
         binding.quizBtn.setOnClickListener{
             val navController = view.findNavController()
             navController.navigate(R.id.action_mainPageFragment_to_quizQuestionsFragment)
+        }
+
+        binding.goToGuessGameBtn.setOnClickListener{
+            val navController = view.findNavController()
+            navController.navigate(R.id.action_mainPageFragment_to_guessGameFragment)
+            Log.d(TAG,"MASUK SINI!")
         }
 
         return view

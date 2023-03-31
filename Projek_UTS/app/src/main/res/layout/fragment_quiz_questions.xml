@@ -24,6 +24,7 @@
         android:text="@string/question_label"
         android:textSize="24sp"
         android:gravity="center"
+        android:paddingHorizontal="10dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="60dp"
         >
@@ -47,5 +48,11 @@
         style="?attr/materialButtonOutlinedStyle"
         >
     </Button>
+
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="200dp"
+        android:src="@drawable/true_false">
+    </ImageView>
 
 </LinearLayout>

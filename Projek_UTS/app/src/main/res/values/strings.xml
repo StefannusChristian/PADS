@@ -1,25 +1,44 @@
 <resources>
-<!--    Guessing Game -->
+    <!--    Guessing Game -->
     <string name="app_name">SimpleQuizApp</string>
     <string name="count_label">Q%d</string>
     <string name="question_label">Question</string>
     <string name="true_btn_answer">True</string>
     <string name="false_btn_answer">False</string>
-    <string name="result_title">Result</string>
+    <string name="result_title">Result (%s)</string>
     <string name="result_score">%d / 10</string>
     <string name="btn_try_again">Try Again</string>
     <string name="quiz_result_fragment">Quiz Result Fragment</string>
     <string name="quiz_app_button">Quiz</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="gameTitleString"><![CDATA[Think & Guess]]></string>
+    <string name="gameTitleString">Welcome To Think &amp; Guess</string>
     <string name="enterYourName">Enter your name!</string>
-    <string name="startString">Start</string>
+    <string name="nextString">Next</string>
     <string name="welcome_to">Welcome To</string>
-    <string name="guessing_game">Guessing Game</string>
+    <string name="hangman">Hangman</string>
     <string name="emptyName">Please Enter Your Name!</string>
     <string name="homeTitle">Home</string>
     <string name="chooseGame">Choose</string>
     <string name="current_username">Current Username: %s</string>
-    <string name="current_username_none">\"\"</string>
+    <string name="current_username_none">""</string>
+
     <!--    Guess Word Game -->
+    <string name="winOrLoseGuessGameText">You have %s guess the word!</string>
+    <string name="showCorrectWordText">The correct word is %s</string>
+    <string name="inputLetterText">Input 1 Letter</string>
+
+    <!--    About Screen -->
+    <string name="namaSaya">Stefannus Christian</string>
+    <string name="matkul">UTS Pengembangan Aplikasi Dunia Seluler</string>
+    <string name="nimSaya">202000138</string>
+    <string name="prodiSaya">IBDA 2020</string>
+    <string name="bottomNavAbout">About</string>
+    <string name="defaultRemainingGuesses">5</string>
+    <string name="remaininglivestext">Remaining Lives</string>
+    <string name="defaultUnderscore">_ _ _ _ _ _ _ _ _ _</string>
+    <string name="guessButtonText">Guess</string>
+    <string name="wrongWordText">Wrong Letters</string>
+    <string name="logocalvin">logoCalvin</string>
+    <string name="choose_a_game">Choose A Game!</string>
+    <string name="username">Username:</string>
+
 </resources>

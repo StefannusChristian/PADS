@@ -6,35 +6,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".QuizResultFragment">
+    tools:context=".GuessResultFragment">
 
     <TextView
-        android:id="@+id/resultTitleID"
-        android:layout_width="wrap_content"
+        android:id="@+id/winLoseGuessGame"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/result_title"
-        android:textSize="22sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/resultLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/result_score"
-        android:textSize="30sp"
-        android:layout_marginTop="60dp">
-    </TextView>
+        android:paddingHorizontal="10dp"
+        android:gravity="center"
+        android:text="@string/winOrLoseGuessGameText"
+        android:textSize="28sp" />
 
     <Button
-        android:id="@+id/tryAgainBtn"
+        android:id="@+id/guessGameTryAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_try_again"
-        android:layout_marginTop="80dp">
-    </Button>
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        />
 
     <ImageView
-        android:id="@+id/winLoseImage"
+        android:id="@+id/winLoseImageGuess"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/lost">
