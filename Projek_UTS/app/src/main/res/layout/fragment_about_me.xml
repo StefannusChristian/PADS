@@ -7,13 +7,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp"
-    android:background="@color/white"
     tools:context=".AboutMeFragment"
     >
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="125dp"
         android:src="@drawable/logo_calvin"
         android:contentDescription="@string/logocalvin"
@@ -26,8 +24,7 @@
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:paddingHorizontal="12dp"
         android:paddingTop="16dp"
         />
 
@@ -38,8 +35,7 @@
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:paddingHorizontal="12dp"
         android:paddingTop="16dp"
         />
 
@@ -49,8 +45,7 @@
         android:text="@string/prodiSaya"
         android:gravity="center"
         android:textSize="18sp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:paddingHorizontal="12dp"
         android:paddingTop="16dp"
         />
 
@@ -60,8 +55,7 @@
         android:text="@string/nimSaya"
         android:gravity="center"
         android:textSize="18sp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:paddingHorizontal="12dp"
         android:paddingTop="16dp"
         />
 

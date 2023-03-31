@@ -1,7 +1,9 @@
 package com.example.simplequizapp
 
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        val TAG = "MainActivity"
         viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
@@ -34,7 +37,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.chooseGame -> {
                     // Check if userName is empty
-                    if (viewModel.userName.value?.isEmpty() == true) {
+
+                    if (viewModel.userName.value == null) {
                         // Show a toast message
                         if (currentToast != null) {
                             currentToast!!.cancel()

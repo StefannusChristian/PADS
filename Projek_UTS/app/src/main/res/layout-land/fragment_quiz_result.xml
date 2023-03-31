@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".QuizResultFragment">
+
+    <TextView
+        android:id="@+id/resultTitleID"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="@string/result_title"
+        android:layout_marginTop="60dp"
+        android:textSize="50sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/resultLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_score"
+        android:textSize="40sp"
+        android:layout_marginTop="30dp">
+    </TextView>
+
+    <Button
+        android:id="@+id/tryAgainBtn"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_try_again"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp">
+    </Button>
+
+    <ImageView
+        android:id="@+id/winLoseImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/lost">
+    </ImageView>
+
+</LinearLayout>
+</ScrollView>

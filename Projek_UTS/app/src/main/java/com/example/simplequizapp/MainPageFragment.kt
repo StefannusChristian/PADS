@@ -31,7 +31,6 @@ class MainPageFragment : Fragment() {
         binding.goToGuessGameBtn.setOnClickListener{
             val navController = view.findNavController()
             navController.navigate(R.id.action_mainPageFragment_to_guessGameFragment)
-            Log.d(TAG,"MASUK SINI!")
         }
 
         return view

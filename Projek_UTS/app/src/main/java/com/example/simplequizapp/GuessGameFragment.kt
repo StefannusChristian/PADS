@@ -46,6 +46,8 @@ class GuessGameFragment : Fragment() {
         var correctGuess = savedInstanceState?.getInt("curr_corr_guess") ?: 0
         var lives = savedInstanceState?.getInt("curr_lives") ?: 5
 
+        viewModel.theGuessWord = randomWordtoGuess
+
         binding.guessButton.setOnClickListener {
             val randomWordArr = randomWordtoGuess.toCharArray()
             val answerViewCharArr = guessLetters.text.toString().toCharArray()

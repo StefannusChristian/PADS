@@ -1,5 +1,4 @@
 <resources>
-    <!--    Guessing Game -->
     <string name="app_name">SimpleQuizApp</string>
     <string name="count_label">Q%d</string>
     <string name="question_label">Question</string>
@@ -20,13 +19,9 @@
     <string name="chooseGame">Choose</string>
     <string name="current_username">Current Username: %s</string>
     <string name="current_username_none">""</string>
-
-    <!--    Guess Word Game -->
     <string name="winOrLoseGuessGameText">You have %s guess the word!</string>
     <string name="showCorrectWordText">The correct word is %s</string>
     <string name="inputLetterText">Input 1 Letter</string>
-
-    <!--    About Screen -->
     <string name="namaSaya">Stefannus Christian</string>
     <string name="matkul">UTS Pengembangan Aplikasi Dunia Seluler</string>
     <string name="nimSaya">202000138</string>
@@ -40,5 +35,6 @@
     <string name="logocalvin">logoCalvin</string>
     <string name="choose_a_game">Choose A Game!</string>
     <string name="username">Username:</string>
+    <string name="the_correct_word_is_s">The Correct Word Is %s</string>
 
 </resources>

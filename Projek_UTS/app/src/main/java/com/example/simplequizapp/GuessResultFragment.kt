@@ -29,7 +29,7 @@ class GuessResultFragment : Fragment() {
             viewModel.winGuessGameText = "successfully"
         }
         binding.winLoseGuessGame.text = getString(R.string.winOrLoseGuessGameText,viewModel.winGuessGameText)
-
+        binding.theCorrectWord.text = getString(R.string.the_correct_word_is_s,viewModel.theGuessWord)
         binding.guessGameTryAgain.setOnClickListener{
             val navController = view.findNavController()
             navController.navigate(R.id.action_guessResultFragment_to_guessGameFragment)
