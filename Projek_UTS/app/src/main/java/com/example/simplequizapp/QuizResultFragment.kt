@@ -19,15 +19,14 @@ class QuizResultFragment : Fragment() {
     ): View? {
         binding = FragmentQuizResultBinding.inflate(inflater,container,false)
         val view = binding.root
-        val score = QuizResultFragmentArgs.fromBundle(requireArguments()).rightAnswerCount
-        binding.resultLabel.text = getString(R.string.result_score,score)
-
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        binding.resultLabel.text = getString(R.string.result_score,viewModel.rightAnswerCount)
 
         binding.tryAgainBtn.setOnClickListener{
             val navController = view.findNavController()
             val goQuiz = QuizResultFragmentDirections.actionQuizResultFragmentToQuizQuestionsFragment()
             navController.navigate(goQuiz)
+            viewModel.rightAnswerCount = 0
         }
 
         val imageView = binding.winLoseImage
@@ -38,7 +37,6 @@ class QuizResultFragment : Fragment() {
             imageView.setImageResource(R.drawable.won)
         }
         binding.resultTitleID.text = getString(R.string.result_title, youWinString)
-
         return view
     }
 

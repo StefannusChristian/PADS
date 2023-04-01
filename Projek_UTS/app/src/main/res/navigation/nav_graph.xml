@@ -19,9 +19,6 @@
         android:label="fragment_quiz_result"
         tools:layout="@layout/fragment_quiz_result"
         >
-        <argument
-            android:name="right_answer_count"
-            app:argType="integer" />
         <action
             android:id="@+id/action_quizResultFragment_to_mainPageFragment"
             app:destination="@id/mainPageFragment" />

@@ -15,8 +15,6 @@ class QuizQuestionsFragment : Fragment() {
 
     private lateinit var viewModel: SharedViewModel
     private lateinit var binding: FragmentQuizQuestionsBinding
-    private var rightAnswerCount:Int = 0
-    private var quizCount:Int = 1
     private var rightAnswer: Boolean? = null
     private val QUIZ_COUNT:Int = 10
     private val quizData = mutableListOf(
@@ -31,6 +29,7 @@ class QuizQuestionsFragment : Fragment() {
         mutableListOf("The highest mountain in Indonesia is Mount Bromo.", false),
         mutableListOf("Indonesia is the world's sixth most populous country.", false)
     )
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,23 +52,20 @@ class QuizQuestionsFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         viewModel.isWinQuizGame = false
+        viewModel.setRandomIndex()
         binding = FragmentQuizQuestionsBinding.inflate(inflater, container, false)
         val view = binding.root
-
-        quizData.shuffle()
         showNextQuiz()
 
         return view
     }
 
     private fun showNextQuiz() {
-        val quiz = quizData[0]
+        val quiz = quizData[viewModel.randomIndexes[viewModel.quizCount-1]]
         binding.questionLabel.text = quiz[0].toString()
         rightAnswer = quiz[1].toString().toBoolean()
         quiz.removeAt(0)
-        quiz.shuffle()
-        quizData.removeAt(0)
-        binding.countLabel.text = getString(R.string.count_label,quizCount)
+        binding.countLabel.text = getString(R.string.count_label,viewModel.quizCount)
     }
 
     private fun checkAnswer(view: View, userAnswer: Boolean){
@@ -79,7 +75,7 @@ class QuizQuestionsFragment : Fragment() {
 
         if (btnText == rightAnswer) {
             alertTitle="Correct!"
-            rightAnswerCount++
+            viewModel.rightAnswerCount ++
         } else{
             alertTitle="Wrong!"
         }
@@ -92,15 +88,16 @@ class QuizQuestionsFragment : Fragment() {
     }
 
     private fun checkQuizCount(){
-        if (quizCount == QUIZ_COUNT){
+        if (viewModel.quizCount == QUIZ_COUNT){
             val navController = view?.findNavController()
-            if (rightAnswerCount > 7){
+            if (viewModel.rightAnswerCount > 7){
                 viewModel.isWinQuizGame = true;
             }
-            val action = QuizQuestionsFragmentDirections.actionQuizQuestionsFragmentToQuizResultFragment(rightAnswerCount)
+            viewModel.quizCount = 1
+            val action = QuizQuestionsFragmentDirections.actionQuizQuestionsFragmentToQuizResultFragment()
             navController?.navigate(action)
         } else{
-            quizCount++
+            viewModel.quizCount ++
             showNextQuiz()
         }
     }
