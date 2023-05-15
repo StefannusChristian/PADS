@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Sales App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="image_source">
+        <item>https://source.unsplash.com/featured/?music+guitar</item>
+        <item>https://source.unsplash.com/featured/?music+piano</item>
+        <item>https://source.unsplash.com/featured/?music+drums</item>
+        <item>https://source.unsplash.com/featured/?music+microphone</item>
+        <item>https://source.unsplash.com/featured/?music+headphones</item>
+        <item>https://source.unsplash.com/featured/?music+violin</item>
+    </string-array>
+
+    <string-array name="image_desc">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</item>
+        <item>Mauris vitae tincidunt ligula, id hendrerit lectus.</item>
+        <item>Sed scelerisque ipsum non ullamcorper consequat.</item>
+        <item>Proin iaculis nunc eu sem blandit dignissim.</item>
+        <item>Nam ut ipsum malesuada, placerat ligula eget, ullamcorper lorem.</item>
+        <item>Suspendisse nec ante et turpis cursus molestie at at sem.</item>
+    </string-array>
+
+
 </resources>
