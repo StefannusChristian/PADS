@@ -7,6 +7,6 @@ interface Api {
     //    Get All Products
 //    @GET("getallproducts")
 //    fun getAllProducts(): Call<ArrayList<GetProductResponse>>
-    @GET("data")
+    @GET("getallproducts")
     fun getAllProducts(): Call<ArrayList<GetProductResponse>>
 }

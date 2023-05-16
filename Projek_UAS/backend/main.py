@@ -1,3 +1,5 @@
+import socket
+
 import bcrypt
 from datetime import timedelta, datetime
 from flask import Flask, request, jsonify, session
@@ -288,8 +290,10 @@ def create_database():
 
 
 if __name__ == "__main__":
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
     with app.app_context():
         create_database()
         db.create_all()
 
-    app.run(debug=True)
+    app.run(port=5000,debug=True,threaded=False,host=ip_address)
