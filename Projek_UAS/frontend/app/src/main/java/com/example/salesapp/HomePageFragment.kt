@@ -28,6 +28,12 @@ class HomePageFragment : Fragment() {
         val home_adapter = HomePageAdapter(list)
         rvHome.adapter = home_adapter
 
+        val rvHomePromo: RecyclerView = binding.rvHomePromo
+        rvHomePromo.setHasFixedSize(true)
+        rvHomePromo.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        val home_promo_adapter = HomePagePromoAdapter(list)
+        rvHomePromo.adapter = home_promo_adapter
+
         return binding.root
     }
 
