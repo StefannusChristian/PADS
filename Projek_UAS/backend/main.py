@@ -176,6 +176,12 @@ class CustomerSchema(ma.SQLAlchemyAutoSchema):
         include_fk = True
 
 
+class SalesSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Sales
+        include_fk = True
+
+
 class ProductSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Product
@@ -240,8 +246,8 @@ def getAllPromos():
 
 
 # to get all sales orders
-@app.route("/getorder/<username>", methods=["GET"])
-def getOrder(username):
+@app.route("/getorders/<username>", methods=["GET"])
+def getOrders(username):
     response_object = {
         "status": "fail",
         "message": "error occured"
@@ -266,8 +272,8 @@ def getOrder(username):
     
 
 # to get all sales customers
-@app.route("/getcustomer/<username>", methods=["GET"])
-def getCustomer(username):
+@app.route("/getcustomers/<username>", methods=["GET"])
+def getCustomers(username):
     response_object = {
         "status": "fail",
         "message": "error occured"
@@ -280,6 +286,31 @@ def getCustomer(username):
             if (theSales != None):
                 customers = Customer.query.filter_by(sales_id=username).all()
                 response_object["data"] = CustomerSchema(many=True).dump(customers)
+                response_object["status"], response_object["message"] = "success", "-"
+                return jsonify(response_object)
+            else:
+                response_object["message"] = "the sales is missing"
+
+        return response_object
+    except Exception as e:
+         response_object["message"] = str(e)
+         return jsonify(response_object)
+    
+
+# to get sales data
+@app.route("/getsales/<username>", methods=["GET"])
+def getSales(username):
+    response_object = {
+        "status": "fail",
+        "message": "error occured"
+    }
+
+    try:
+        if request.method == "GET":
+            theSales = Sales.query.filter_by(username=username).first()
+            # to check if the query results are available
+            if (theSales != None):
+                response_object["data"] = SalesSchema().dump(theSales)
                 response_object["status"], response_object["message"] = "success", "-"
                 return jsonify(response_object)
             else:
@@ -1003,7 +1034,8 @@ if __name__ == "__main__":
         db.create_all()
         create_triggers()
         
-    app.run(port=5000,debug=True,threaded=False,host=ip_address)
+    # app.run(port=5000,debug=True,threaded=False,host=ip_address)
+    app.run()
 
 
 
