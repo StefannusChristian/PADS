@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 class CartViewModel: ViewModel() {
 
     val totalPrice: MutableLiveData<Double> = MutableLiveData(0.0)
-    val cartItems: MutableLiveData<List<CartResponse>> = MutableLiveData(emptyList())
+    val cartItems: MutableLiveData<List<CartResponse>?> = MutableLiveData(emptyList())
 
     fun updateTotalPrice() {
         val selectedItems = getSelectedItems()
@@ -30,6 +30,16 @@ class CartViewModel: ViewModel() {
             updateTotalPrice()
         }
     }
+
+    fun cancelSelection() {
+        val items = cartItems.value?.toMutableList()
+        items?.forEach { item ->
+            item.isChecked = false
+        }
+        cartItems.value = items
+        updateTotalPrice()
+    }
+
 
     private fun getSelectedItems(): List<CartResponse> {
         return cartItems.value?.filter { it.isChecked } ?: emptyList()

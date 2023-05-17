@@ -1,27 +1,33 @@
 package com.example.salesapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesapp.databinding.FragmentCartBinding
+import com.example.salesapp.databinding.MainToolbarBinding
 
 class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
+    private lateinit var toolBarBinding: MainToolbarBinding
     private val list = ArrayList<CartResponse>()
     private lateinit var viewModel: CartViewModel
     private val cartAdapter: CartAdapter by lazy { CartAdapter(list, viewModel) }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
+        toolBarBinding = MainToolbarBinding.bind(binding.root.findViewById(R.id.mainToolbar))
         viewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
         val rvCart: RecyclerView = binding.rvCart
@@ -30,16 +36,30 @@ class CartFragment : Fragment() {
         list.addAll(getCartProducts())
         rvCart.adapter = cartAdapter
 
-        // Observe the total price and update the UI
         viewModel.totalPrice.observe(viewLifecycleOwner) { totalPrice ->
             binding.totalPrice.text = totalPrice.toString()
         }
 
+        viewModel.cartItems.observe(viewLifecycleOwner) { items ->
+            list.clear()
+            if (items != null) {
+                list.addAll(items)
+            }
+            cartAdapter.notifyDataSetChanged()
+        }
+
+        binding.cancelButton.setOnClickListener {
+            viewModel.cancelSelection()
+        }
+
         viewModel.updateTotalPrice()
+
+        toolBarBinding.toolbarBtn.setOnClickListener {
+            findNavController().navigate(R.id.homePageFragment)
+        }
 
         return binding.root
     }
-
 
     private fun getCartProducts(): ArrayList<CartResponse>{
         val imageUrls = resources.getStringArray(R.array.image_source)
@@ -52,7 +72,7 @@ class CartFragment : Fragment() {
                 imageUrls[i],
                 price[i],
                 desc[i],
-                quantity = 1,
+                quantity = 0,
                 isChecked = false
             )
             cartProductsList.add(cartProducts)
