@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.salesapp.databinding.CartListItemBinding
 
-class CartAdapter(private val list: ArrayList<CartResponse>) :
+class CartAdapter(private val list: ArrayList<CartResponse>,
+                  private val viewModel: CartViewModel
+) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     inner class CartViewHolder(private val binding: CartListItemBinding) :
@@ -14,7 +16,11 @@ class CartAdapter(private val list: ArrayList<CartResponse>) :
 
         private val cartImage = binding.cartImage
         private val cartDesc = binding.cartDesc
-        private val carPrive = binding.cartPrice
+        private val cartPrice = binding.cartPrice
+        private val cartQuantity = binding.cartQtyTv
+        private val cartIncrementButton = binding.cartIncBtn
+        private val cartDecrementButton = binding.cartDecBtn
+        private val cartCheckBox = binding.cartCheckbox
 
         fun bind(response: CartResponse) {
             with(binding) {
@@ -23,6 +29,23 @@ class CartAdapter(private val list: ArrayList<CartResponse>) :
                     .into(cartImage)
                 cartDesc.text = response.desc
                 cartPrice.text = response.price
+                cartQuantity.text = response.quantity.toString()
+                cartCheckBox.isChecked = response.isChecked
+
+                cartIncrementButton.setOnClickListener {
+                    viewModel.incrementQuantity(response)
+                    cartQuantity.text = response.quantity.toString()
+                }
+
+                cartDecrementButton.setOnClickListener {
+                    viewModel.decrementQuantity(response)
+                    cartQuantity.text = response.quantity.toString()
+                }
+
+                cartCheckBox.setOnCheckedChangeListener { _, isChecked ->
+                    response.isChecked = isChecked
+                    viewModel.updateTotalPrice()
+                }
             }
         }
     }
