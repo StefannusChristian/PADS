@@ -1,5 +1,6 @@
 package com.example.salesapp
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.salesapp.databinding.FragmentHomePageBinding
+import com.example.salesapp.databinding.HomeProductPopupBinding
 
 class HomePageFragment : Fragment() {
 
@@ -16,7 +19,6 @@ class HomePageFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter() }
     private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,19 @@ class HomePageFragment : Fragment() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         setupRecyclerViews()
+
+        homeAdapter.setOnItemClickCallback(object: HomePageAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Product) {
+                showProductDetailsDialog(data)
+            }
+        })
+
+        homePromoAdapter.setOnItemClickCallback(object: HomePagePromoAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Product) {
+                showProductDetailsDialog(data)
+            }
+        })
+
         observeProductList()
         observePromosList()
 
@@ -65,6 +80,31 @@ class HomePageFragment : Fragment() {
         }
     }
 
+    private fun showProductDetailsDialog(product: Product) {
+        val dialogBinding = HomeProductPopupBinding.inflate(LayoutInflater.from(context))
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(dialogBinding.root)
+
+        val priceTag = getString(R.string.price_tag)
+
+        val productImage = dialogBinding.dialogProductImage
+        val productName = dialogBinding.dialogProductName
+        val productPrice = dialogBinding.dialogProductPrice
+        val productDescription = dialogBinding.dialogProductDescription
+
+        productImage.apply {
+            Glide.with(context)
+                .load(product.img_link)
+                .into(this)
+        }
+
+        productName.text = product.name
+
+        val productPriceString = priceTag + " " + product.price
+        productPrice.text = productPriceString
+        productDescription.text = product.description
+        dialog.show()
+    }
 
 
 }

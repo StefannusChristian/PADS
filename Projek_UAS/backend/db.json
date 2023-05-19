@@ -3,70 +3,108 @@
         {
             "available_qty": 36,
             "id": 1,
-            "img_link": "https://tinyurl.com/2wnaftrs",
+            "img_link": "https://images.unsplash.com/photo-1671459922221-be8beec5c9fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3Mgc21hcnRwaG9uZXx8fHx8fDE2ODQ1MTMxMzk&ixlib=rb-4.0.3&q=80&w=1080",
             "is_promo": true,
-            "name": "milk",
+            "name": "phone",
             "ordered_qty": 0,
-            "price": 13000,
+            "price": 1300000,
             "total_qty": 36,
-            "warehouse_id": 1
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
         },
         {
             "available_qty": 3,
             "id": 2,
-            "img_link": "https://tinyurl.com/3hdeezjk",
+            "img_link": "https://images.unsplash.com/photo-1598329639075-2723855a77da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3MgbGFwdG9wfHx8fHx8MTY4NDUxMzE0Nw&ixlib=rb-4.0.3&q=80&w=1080",
             "is_promo": true,
-            "name": "eyeglasses",
+            "name": "laptop",
             "ordered_qty": 0,
-            "price": 33000,
+            "price": 3300000,
             "total_qty": 3,
-            "warehouse_id": 1
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
         },
         {
             "available_qty": 6,
             "id": 3,
-            "img_link": "https://tinyurl.com/bdea4eb5",
+            "img_link": "https://images.unsplash.com/photo-1646797151620-4f20c2d16944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3MgY2FtZXJhfHx8fHx8MTY4NDUxMzE4Nw&ixlib=rb-4.0.3&q=80&w=1080",
             "is_promo": false,
-            "name": "t-shirt",
+            "name": "camera",
             "ordered_qty": 0,
-            "price": 73000,
+            "price": 73000000,
             "total_qty": 6,
-            "warehouse_id": 1
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
         },
         {
             "available_qty": 312,
             "id": 4,
-            "img_link": "https://tinyurl.com/5by4dd2p",
+            "img_link": "https://images.unsplash.com/photo-1628591459313-a64214c5bfac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3MgdGFibGV0fHx8fHx8MTY4NDUxMzIzMA&ixlib=rb-4.0.3&q=80&w=1080",
             "is_promo": false,
-            "name": "christmas hat",
+            "name": "tablet",
             "ordered_qty": 0,
-            "price": 35000,
+            "price": 35000000,
             "total_qty": 312,
-            "warehouse_id": 1
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
+        },
+        {
+            "available_qty": 32,
+            "id": 5,
+            "img_link": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3MgaGVhZHBob25lc3x8fHx8fDE2ODQ1MTUyNDM&ixlib=rb-4.0.3&q=80&w=1080",
+            "is_promo": false,
+            "name": "headphones",
+            "ordered_qty": 0,
+            "price": 15000000,
+            "total_qty": 32,
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
+        },
+        {
+            "available_qty": 32,
+            "id": 6,
+            "img_link": "https://images.unsplash.com/photo-1611655046113-aa3c8e209f10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3Mgc3BlYWtlcnx8fHx8fDE2ODQ1MTUyOTI&ixlib=rb-4.0.3&q=80&w=1080",
+            "is_promo": false,
+            "name": "speaker",
+            "ordered_qty": 0,
+            "price": 25000000,
+            "total_qty": 32,
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
         }
     ],
     "getallpromos": [
         {
             "available_qty": 36,
             "id": 1,
-            "img_link": "https://tinyurl.com/2wnaftrs",
+            "img_link": "https://images.unsplash.com/photo-1671459922221-be8beec5c9fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3Mgc21hcnRwaG9uZXx8fHx8fDE2ODQ1MTMxMzk&ixlib=rb-4.0.3&q=80&w=1080",
             "is_promo": true,
-            "name": "milk",
+            "name": "phone",
             "ordered_qty": 0,
-            "price": 13000,
+            "price": 1300000,
             "total_qty": 36,
-            "warehouse_id": 1
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
         },
         {
             "available_qty": 3,
             "id": 2,
-            "img_link": "https://tinyurl.com/3hdeezjk",
+            "img_link": "https://images.unsplash.com/photo-1598329639075-2723855a77da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWxlY3Ryb25pY3MgbGFwdG9wfHx8fHx8MTY4NDUxMzE0Nw&ixlib=rb-4.0.3&q=80&w=1080",
             "is_promo": true,
-            "name": "eyeglasses",
+            "name": "laptop",
             "ordered_qty": 0,
-            "price": 33000,
+            "price": 3300000,
             "total_qty": 3,
-            "warehouse_id": 1
+            "warehouse_id": 1,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatu laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+            "category_name": "Category Name"
         }
     ]
 }

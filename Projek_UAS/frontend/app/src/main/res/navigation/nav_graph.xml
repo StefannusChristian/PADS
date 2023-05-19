@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_inventoryFragment"
             app:destination="@id/inventoryFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_promoFragment"
+            app:destination="@id/promoFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +38,14 @@
         tools:layout="@layout/fragment_inventory" >
         <action
             android:id="@+id/action_inventoryFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/promoFragment"
+        android:name="com.example.salesapp.PromoFragment"
+        android:label="PromoFragment" >
+        <action
+            android:id="@+id/action_promoFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
 

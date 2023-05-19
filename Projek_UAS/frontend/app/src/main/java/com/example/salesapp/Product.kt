@@ -9,6 +9,8 @@ data class Product(
     val ordered_qty: Int,
     val price: Int,
     val total_qty: Int,
-    val warehouse_id: Int
+    val warehouse_id: Int,
+    val description: String,
+    val category_name: String
 )
 
