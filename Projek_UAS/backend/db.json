@@ -1,0 +1,72 @@
+{
+    "getallproducts": [
+        {
+            "available_qty": 36,
+            "id": 1,
+            "img_link": "https://tinyurl.com/2wnaftrs",
+            "is_promo": true,
+            "name": "milk",
+            "ordered_qty": 0,
+            "price": 13000,
+            "total_qty": 36,
+            "warehouse_id": 1
+        },
+        {
+            "available_qty": 3,
+            "id": 2,
+            "img_link": "https://tinyurl.com/3hdeezjk",
+            "is_promo": true,
+            "name": "eyeglasses",
+            "ordered_qty": 0,
+            "price": 33000,
+            "total_qty": 3,
+            "warehouse_id": 1
+        },
+        {
+            "available_qty": 6,
+            "id": 3,
+            "img_link": "https://tinyurl.com/bdea4eb5",
+            "is_promo": false,
+            "name": "t-shirt",
+            "ordered_qty": 0,
+            "price": 73000,
+            "total_qty": 6,
+            "warehouse_id": 1
+        },
+        {
+            "available_qty": 312,
+            "id": 4,
+            "img_link": "https://tinyurl.com/5by4dd2p",
+            "is_promo": false,
+            "name": "christmas hat",
+            "ordered_qty": 0,
+            "price": 35000,
+            "total_qty": 312,
+            "warehouse_id": 1
+        }
+    ],
+    "getallpromos": [
+        {
+            "available_qty": 36,
+            "id": 1,
+            "img_link": "https://tinyurl.com/2wnaftrs",
+            "is_promo": true,
+            "name": "milk",
+            "ordered_qty": 0,
+            "price": 13000,
+            "total_qty": 36,
+            "warehouse_id": 1
+        },
+        {
+            "available_qty": 3,
+            "id": 2,
+            "img_link": "https://tinyurl.com/3hdeezjk",
+            "is_promo": true,
+            "name": "eyeglasses",
+            "ordered_qty": 0,
+            "price": 33000,
+            "total_qty": 3,
+            "warehouse_id": 1
+        }
+    ]
+}
