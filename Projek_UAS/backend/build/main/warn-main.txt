@@ -14,7 +14,7 @@ Types if import:
 IMPORTANT: Do NOT post this list to the issue-tracker. Use it as a basis for
             tracking down the missing module yourself. Thanks!
 
-missing module named pyimod02_importers - imported by C:\Users\FataOrgana-Dev3\Documents\projects\Pengembangan-Aplikasi-Dunia-Seluler\Projek_UAS\backend\sales_venv\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (top-level), C:\Users\FataOrgana-Dev3\Documents\projects\Pengembangan-Aplikasi-Dunia-Seluler\Projek_UAS\backend\sales_venv\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgres.py (top-level)
+missing module named pyimod02_importers - imported by C:\Users\FataOrgana-Dev3\Documents\projects\backend-bu\sales_venv\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (top-level), C:\Users\FataOrgana-Dev3\Documents\projects\backend-bu\sales_venv\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgres.py (top-level)
 missing module named _posixsubprocess - imported by subprocess (optional), multiprocessing.util (delayed)
 missing module named org - imported by pickle (optional)
 missing module named 'org.python' - imported by copy (optional), xml.sax (delayed, conditional)
