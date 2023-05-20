@@ -12,6 +12,11 @@ class PromoAdapter : RecyclerView.Adapter<PromoAdapter.PromoHolder>() {
 
     private val promosList = mutableListOf<Product>()
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class PromoHolder(private val binding: PromoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -30,6 +35,7 @@ class PromoAdapter : RecyclerView.Adapter<PromoAdapter.PromoHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PromoHolder {
         val binding = PromoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return PromoHolder(binding)
     }
 
@@ -37,6 +43,11 @@ class PromoAdapter : RecyclerView.Adapter<PromoAdapter.PromoHolder>() {
 
     override fun onBindViewHolder(holder: PromoHolder, position: Int) {
         val promos = promosList[position]
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback?.onItemClicked(promos)
+        }
+
         holder.bind(promos)
     }
 
@@ -46,4 +57,9 @@ class PromoAdapter : RecyclerView.Adapter<PromoAdapter.PromoHolder>() {
         promosList.addAll(products)
         notifyDataSetChanged()
     }
+
+    interface OnItemClickCallback{
+        fun onItemClicked(data: Product)
+    }
+
 }

@@ -11,6 +11,5 @@ data class Product(
     val total_qty: Int,
     val warehouse_id: Int,
     val description: String,
-    val category_name: String
 )
 

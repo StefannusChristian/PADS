@@ -49,6 +49,11 @@ class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val product = productList[position]
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback?.onItemClicked(product)
+        }
+
         holder.bind(product)
     }
 

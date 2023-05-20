@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/mainToolbar"
-    android:background="#8294C4"
-    >
+    android:background="#8294C4">
 
     <TextView
         android:id="@+id/toolbarHeader"
@@ -18,7 +17,7 @@
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/toolbarBtn"
         app:layout_constraintStart_toEndOf="@+id/toolbarBtn"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/toolbarBtn"

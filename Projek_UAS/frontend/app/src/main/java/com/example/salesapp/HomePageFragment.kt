@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.salesapp.databinding.FragmentHomePageBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
+import com.example.salesapp.databinding.MainToolbarBinding
 
 class HomePageFragment : Fragment() {
 
@@ -26,7 +29,6 @@ class HomePageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomePageBinding.inflate(inflater, container, false)
-
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         setupRecyclerViews()
@@ -48,6 +50,12 @@ class HomePageFragment : Fragment() {
 
         homeViewModel.fetchProducts()
         homeViewModel.fetchPromos()
+
+        val goToPromo: Button = binding.goToPromoBtn
+        goToPromo.setOnClickListener {
+            findNavController().navigate(R.id.promoFragment)
+        }
+
 
         return binding.root
     }
