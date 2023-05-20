@@ -8,9 +8,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.example.salesapp.databinding.HomeListItemBinding
+import com.example.salesapp.databinding.CustomerItemBinding
 
-class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
+class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
     private val productList = mutableListOf<Product>()
 
@@ -19,7 +19,7 @@ class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class HomeViewHolder(private val binding: HomeListItemBinding) :
+    inner class CustomerViewHolder(private val binding: CustomerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val productImage = binding.productImage
@@ -39,14 +39,14 @@ class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding = HomeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
+        val binding = CustomerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CustomerViewHolder(binding)
     }
 
     override fun getItemCount(): Int = productList.size
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
         val product = productList[position]
 
         holder.itemView.setOnClickListener {
