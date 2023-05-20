@@ -1,19 +1,25 @@
 package com.example.salesapp
 
+import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.salesapp.databinding.FragmentHomePageBinding
+import com.example.salesapp.databinding.HomeProductPopupBinding
 
 class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
-    private val list = ArrayList<HomeResponse>()
+    private lateinit var homeViewModel: HomeViewModel
+    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter() }
+    private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,35 +27,88 @@ class HomePageFragment : Fragment() {
     ): View {
         binding = FragmentHomePageBinding.inflate(inflater, container, false)
 
-        val rvHome: RecyclerView = binding.rvHome
-        rvHome.setHasFixedSize(true)
-        list.addAll(getHomeProducts())
-        rvHome.layoutManager = GridLayoutManager(context,2)
-        val home_adapter = HomePageAdapter(list)
-        rvHome.adapter = home_adapter
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-        val rvHomePromo: RecyclerView = binding.rvHomePromo
-        rvHomePromo.setHasFixedSize(true)
-        rvHomePromo.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        val home_promo_adapter = HomePagePromoAdapter(list)
-        rvHomePromo.adapter = home_promo_adapter
+        setupRecyclerViews()
+
+        homeAdapter.setOnItemClickCallback(object: HomePageAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Product) {
+                showProductDetailsDialog(data)
+            }
+        })
+
+        homePromoAdapter.setOnItemClickCallback(object: HomePagePromoAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Product) {
+                showProductDetailsDialog(data)
+            }
+        })
+
+        observeProductList()
+        observePromosList()
+
+        homeViewModel.fetchProducts()
+        homeViewModel.fetchPromos()
 
         return binding.root
     }
 
-    private fun getHomeProducts(): ArrayList<HomeResponse>{
-        val imageUrls = resources.getStringArray(R.array.image_source)
-        val desc = resources.getStringArray(R.array.image_desc)
-
-        val listHomeProducts = ArrayList<HomeResponse>()
-        for (i in imageUrls.indices){
-            val homeProducts = HomeResponse(
-                imageUrls[i],
-                desc[i],
-            )
-            listHomeProducts.add(homeProducts)
+    private fun setupRecyclerViews() {
+        binding.rvHome.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = homeAdapter
         }
-        return listHomeProducts
+
+        binding.rvHomePromo.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = homePromoAdapter
+        }
     }
+
+    private fun observeProductList() {
+        homeViewModel.products.observe(viewLifecycleOwner) { productList ->
+            productList?.let {
+                homeAdapter.setProducts(it)
+            }
+        }
+    }
+    private fun observePromosList() {
+        homeViewModel.promos.observe(viewLifecycleOwner) { promosList ->
+            promosList?.let {
+                homePromoAdapter.setPromos(it)
+            }
+        }
+    }
+
+    private fun showProductDetailsDialog(product: Product) {
+        val dialogBinding = HomeProductPopupBinding.inflate(LayoutInflater.from(context))
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(dialogBinding.root)
+
+        val priceTag = getString(R.string.price_tag)
+
+        val productImage = dialogBinding.dialogProductImage
+        val productName = dialogBinding.dialogProductName
+        val productPrice = dialogBinding.dialogProductPrice
+        val productDescription = dialogBinding.dialogProductDescription
+        val productIsPromo = dialogBinding.dialogProductIsPromo
+
+        productImage.apply {
+            Glide.with(context)
+                .load(product.img_link)
+                .into(this)
+        }
+
+        productName.text = product.name
+
+        val productPriceString = priceTag + " " + product.price
+        productPrice.text = productPriceString
+        productDescription.text = product.description
+        productIsPromo.text = product.is_promo.toString()
+
+        dialog.show()
+    }
+
 
 }
