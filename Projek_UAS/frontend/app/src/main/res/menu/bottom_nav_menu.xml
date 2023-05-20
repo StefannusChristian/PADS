@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/transactionFragmentItem"
+        android:title="Transaction"
+        android:icon="@drawable/baseline_attach_money_24"
+        />
+
+    <item
+        android:id="@+id/cartFragmentItem"
+        android:title="Cart"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        />
+
+    <item
+        android:id="@+id/inventoryFragmentItem"
+        android:title="Inventory"
+        android:icon="@drawable/baseline_warehouse_24"
+        />
+
+    <item
+        android:id="@+id/customersFragmentItem"
+        android:title="Customers"
+        android:icon="@drawable/baseline_people_24"
+        />
+
+</menu>
