@@ -44,6 +44,15 @@
             </TextView>
 
             <TextView
+                android:id="@+id/dialogProductIsPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                >
+            </TextView>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"

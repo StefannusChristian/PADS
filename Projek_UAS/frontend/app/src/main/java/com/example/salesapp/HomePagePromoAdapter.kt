@@ -14,11 +14,17 @@ class HomePagePromoAdapter : RecyclerView.Adapter<HomePagePromoAdapter.HomeViewH
 
     private val promosList = mutableListOf<Product>()
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class HomeViewHolder(private val binding: HomeListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val productImage = binding.productImage
         private val productDesc = binding.productDescription
+
 
         fun bind(product: Product) {
             val requestOptions = RequestOptions().transform(RoundedCorners(8))
@@ -43,6 +49,11 @@ class HomePagePromoAdapter : RecyclerView.Adapter<HomePagePromoAdapter.HomeViewH
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val promos = promosList[position]
         holder.bind(promos)
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback?.onItemClicked(promos)
+        }
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -51,4 +62,9 @@ class HomePagePromoAdapter : RecyclerView.Adapter<HomePagePromoAdapter.HomeViewH
         promosList.addAll(products)
         notifyDataSetChanged()
     }
+
+    interface OnItemClickCallback{
+        fun onItemClicked(data: Product)
+    }
+
 }

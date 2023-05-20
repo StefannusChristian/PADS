@@ -2,6 +2,7 @@ package com.example.salesapp
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -91,6 +92,7 @@ class HomePageFragment : Fragment() {
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
+        val productIsPromo = dialogBinding.dialogProductIsPromo
 
         productImage.apply {
             Glide.with(context)
@@ -103,6 +105,8 @@ class HomePageFragment : Fragment() {
         val productPriceString = priceTag + " " + product.price
         productPrice.text = productPriceString
         productDescription.text = product.description
+        productIsPromo.text = product.is_promo.toString()
+
         dialog.show()
     }
 
