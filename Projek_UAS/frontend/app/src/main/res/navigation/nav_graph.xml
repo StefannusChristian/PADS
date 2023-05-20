@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_promoFragment"
             app:destination="@id/promoFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_customerFragment"
+            app:destination="@id/customerFragment" />
     </fragment>
 
     <fragment
@@ -48,6 +51,15 @@
         >
         <action
             android:id="@+id/action_promoFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="com.example.salesapp.CustomerFragment"
+        tools:layout="@layout/fragment_customer"
+        android:label="CustomerFragment" >
+        <action
+            android:id="@+id/action_customerFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
 

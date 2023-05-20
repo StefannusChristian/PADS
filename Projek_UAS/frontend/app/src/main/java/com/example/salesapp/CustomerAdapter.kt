@@ -12,7 +12,7 @@ import com.example.salesapp.databinding.CustomerItemBinding
 
 class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
-    private val productList = mutableListOf<Product>()
+    private val customerList = mutableListOf<Customer>()
 
     private var onItemClickCallback: OnItemClickCallback? = null
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
@@ -22,19 +22,21 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
     inner class CustomerViewHolder(private val binding: CustomerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val productImage = binding.productImage
-        private val productDesc = binding.productDescription
+        private val customerImage = binding.customerImage
+        private val customerName = binding.customerName
+        private val customerAddress = binding.customerAddress
 
-        fun bind(product: Product) {
+        fun bind(customer: Customer) {
             val requestOptions = RequestOptions().transform(RoundedCorners(8))
             with(binding) {
-                Glide.with(productImage.context)
-                    .load(product.img_link)
+                Glide.with(customerImage.context)
+                    .load(customer.img_link)
                     .apply(requestOptions)
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(productImage)
-                binding.root.setOnClickListener{onItemClickCallback?.onItemClicked(product)}
-                productDesc.text = product.name
+                    .into(customerImage)
+                binding.root.setOnClickListener{onItemClickCallback?.onItemClicked(customer)}
+                customerName.text = customer.username
+                customerAddress.text = customer.address
             }
         }
     }
@@ -44,27 +46,27 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
         return CustomerViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = productList.size
+    override fun getItemCount(): Int = customerList.size
 
     override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
-        val product = productList[position]
+        val customer = customerList[position]
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback?.onItemClicked(product)
+            onItemClickCallback?.onItemClicked(customer)
         }
 
-        holder.bind(product)
+        holder.bind(customer)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setProducts(products: List<Product>) {
-        productList.clear()
-        productList.addAll(products)
+    fun setCustomers(customers: List<Customer>) {
+        customerList.clear()
+        customerList.addAll(customers)
         notifyDataSetChanged()
     }
 
     interface OnItemClickCallback{
-        fun onItemClicked(data: Product)
+        fun onItemClicked(data: Customer)
     }
 
 

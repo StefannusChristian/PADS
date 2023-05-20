@@ -19,7 +19,7 @@ class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var homeViewModel: HomeViewModel
-    private val homeAdapter: CustomerAdapter by lazy { CustomerAdapter() }
+    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter() }
     private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
 
     override fun onCreateView(
@@ -31,7 +31,7 @@ class HomePageFragment : Fragment() {
 
         setupRecyclerViews()
 
-        homeAdapter.setOnItemClickCallback(object: CustomerAdapter.OnItemClickCallback{
+        homeAdapter.setOnItemClickCallback(object: HomePageAdapter.OnItemClickCallback{
             override fun onItemClicked(data: Product) {
                 showProductDetailsDialog(data)
             }
