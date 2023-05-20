@@ -11,4 +11,7 @@ interface Api {
     @GET("getallpromos")
     fun getAllPromos(): Call<ArrayList<Product>>
 
+    @GET("getcustomers/{salesName}")
+    fun getCustomers(@Path("salesName")salesName: String): Call<ArrayList<Customer>>
+
 }

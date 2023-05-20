@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C10E0E"
     android:orientation="vertical"
     tools:context=".PromoFragment">
 
@@ -14,7 +13,6 @@
         android:layout_height="wrap_content" />
 
     <TextView
-
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,8 +23,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_promo"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="428dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

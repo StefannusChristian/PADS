@@ -54,7 +54,6 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_promoFragment)
         }
 
-
         return binding.root
     }
 
