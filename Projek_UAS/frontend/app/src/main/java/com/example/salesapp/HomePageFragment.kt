@@ -2,7 +2,6 @@ package com.example.salesapp
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.salesapp.databinding.FragmentHomePageBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
-import com.example.salesapp.databinding.MainToolbarBinding
 
 class HomePageFragment : Fragment() {
 
@@ -53,7 +51,7 @@ class HomePageFragment : Fragment() {
 
         val goToPromo: Button = binding.goToPromoBtn
         goToPromo.setOnClickListener {
-            findNavController().navigate(R.id.promoFragment)
+            findNavController().navigate(R.id.action_homePageFragment_to_promoFragment)
         }
 
 

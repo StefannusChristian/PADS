@@ -43,7 +43,9 @@
     <fragment
         android:id="@+id/promoFragment"
         android:name="com.example.salesapp.PromoFragment"
-        android:label="PromoFragment" >
+        android:label="PromoFragment"
+        tools:layout="@layout/fragment_promo"
+        >
         <action
             android:id="@+id/action_promoFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
