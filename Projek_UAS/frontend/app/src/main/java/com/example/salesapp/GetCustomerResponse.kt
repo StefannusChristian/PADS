@@ -16,9 +16,15 @@ data class PostCustomerRequest(
     @SerializedName("customer_img_link") val customer_img_link: String
 )
 
-data class CustomerResponse(
+data class PostResponse(
     val message: String,
     val status: String
+)
+
+data class AddToCartRequest(
+    @SerializedName("sales_username") val sales_username: String,
+    @SerializedName("product_id") val product_id: Int,
+    @SerializedName("qty") val qty: Int,
 )
 
 data class PatchCustomerRequest(

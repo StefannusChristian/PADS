@@ -32,21 +32,21 @@ class CustomerViewModel: ViewModel() {
 
     fun addCustomer(customer: PostCustomerRequest) {
         RetrofitClient.instance.createCustomer(customer)
-            .enqueue(object : Callback<CustomerResponse> {
-                override fun onResponse(call: Call<CustomerResponse>, response: Response<CustomerResponse>) {
+            .enqueue(object : Callback<PostResponse> {
+                override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                     if (response.isSuccessful) {
                         fetchCustomers()
                     }
                 }
-                override fun onFailure(call: Call<CustomerResponse>, t: Throwable) {
+                override fun onFailure(call: Call<PostResponse>, t: Throwable) {
                 }
             })
     }
 
     fun unsubscribeCustomer(customer: PatchCustomerRequest) {
         RetrofitClient.instance.unsubscribeCustomer(customer)
-            .enqueue(object : Callback<CustomerResponse> {
-                override fun onResponse(call: Call<CustomerResponse>, response: Response<CustomerResponse>) {
+            .enqueue(object : Callback<PostResponse> {
+                override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                     if (response.isSuccessful) {
                         Log.d("CustomerFragment","Berhasil keapus!")
                         fetchCustomers()
@@ -55,7 +55,7 @@ class CustomerViewModel: ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<CustomerResponse>, t: Throwable) {
+                override fun onFailure(call: Call<PostResponse>, t: Throwable) {
                     Log.d("customerFragment","Gagal keapus!")
                 }
             })

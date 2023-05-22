@@ -2,16 +2,19 @@ package com.example.salesapp
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.salesapp.databinding.AddCustomerPopupBinding
 import com.example.salesapp.databinding.FragmentHomePageBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 
@@ -19,7 +22,7 @@ class HomePageFragment : Fragment(){
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var homeViewModel: HomeViewModel
-    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter() }
+    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(homeViewModel) }
     private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
 
     override fun onCreateView(
@@ -34,6 +37,10 @@ class HomePageFragment : Fragment(){
         homeAdapter.setOnItemClickCallback(object : HomePageAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Product) {
                 showProductDetailDialog(data)
+            }
+
+            override fun onAddToCartClicked(salesUsername: String, productId: Int, Qty: Int) {
+                TODO("Not yet implemented")
             }
         })
 
@@ -98,7 +105,8 @@ class HomePageFragment : Fragment(){
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
-        val productIsPromo = dialogBinding.dialogProductIsPromo
+        val productPromo = dialogBinding.dialogProductIsPromo
+        val productId = dialogBinding.dialogProductId
 
         productImage.apply {
             Glide.with(requireContext())
@@ -111,7 +119,17 @@ class HomePageFragment : Fragment(){
         val productPriceString = priceTag + " " + product.price
         productPrice.text = productPriceString
         productDescription.text = product.description
-        productIsPromo.text = product.is_promo.toString()
+        productPromo.text = product.promo.toString()
+        productId.text = "Product ID: "+product.id.toString()
+
+
+        val addToCartBtn: Button = dialogBinding.addToCartBtn
+        addToCartBtn.setOnClickListener{
+            val qty: Int = dialogBinding.addToCartQty.text.toString().toIntOrNull()?:0
+            val productToAdd = AddToCartRequest(sales_username = "salesA", product_id = product.id, qty = qty)
+            homeViewModel.addToCart(productToAdd)
+            dialog.dismiss()
+        }
 
         dialog.show()
     }

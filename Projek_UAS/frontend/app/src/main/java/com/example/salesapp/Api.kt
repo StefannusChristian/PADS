@@ -14,9 +14,12 @@ interface Api {
     fun getCustomers(@Path("salesName")salesName: String): Call<ArrayList<GetCustomerResponse>>
 
     @POST("addnewcustomer")
-    fun createCustomer(@Body customerRequest: PostCustomerRequest): Call<CustomerResponse>
+    fun createCustomer(@Body customerRequest: PostCustomerRequest): Call<PostResponse>
 
     @PATCH("unsubscribe")
-    fun unsubscribeCustomer(@Body patchCustomerRequest: PatchCustomerRequest): Call<CustomerResponse>
+    fun unsubscribeCustomer(@Body patchCustomerRequest: PatchCustomerRequest): Call<PostResponse>
+
+    @POST("addcartproduct")
+    fun addToCart(@Body addToCartRequest: AddToCartRequest): Call<PostResponse>
 
 }

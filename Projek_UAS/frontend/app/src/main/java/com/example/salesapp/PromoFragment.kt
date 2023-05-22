@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.salesapp.databinding.FragmentPromoBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
@@ -77,7 +76,7 @@ class PromoFragment : Fragment() {
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
-        val productIsPromo = dialogBinding.dialogProductIsPromo
+        val productPromo = dialogBinding.dialogProductIsPromo
 
         productImage.apply {
             Glide.with(context)
@@ -90,7 +89,7 @@ class PromoFragment : Fragment() {
         val productPriceString = priceTag + " " + product.price
         productPrice.text = productPriceString
         productDescription.text = product.description
-        productIsPromo.text = product.is_promo.toString()
+        productPromo.text = product.promo.toString()
 
         dialog.show()
     }
