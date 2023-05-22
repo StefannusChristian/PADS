@@ -1,8 +1,8 @@
 package com.example.salesapp
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.salesapp.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,6 +14,8 @@ class HomeViewModel : ViewModel() {
 
     val products: MutableLiveData<ArrayList<Product>?> get() = _products
     val promos: MutableLiveData<ArrayList<Product>?> get() = _promos
+
+    val salesUsername: String = "salesA"
 
     fun fetchProducts() {
         RetrofitClient.instance.getAllProducts().enqueue(object : Callback<ArrayList<Product>> {
@@ -49,10 +51,25 @@ class HomeViewModel : ViewModel() {
         })
     }
 
+    fun addToCart(product: AddToCartRequest) {
+        RetrofitClient.instance.addToCart(product)
+            .enqueue(object : Callback<PostResponse> {
+                override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                    if (response.isSuccessful) {
+                        Log.d("HomeFragment","Add To Cart Berhasil!")
+                        Log.d("HomeFragment",response.body().toString())
+                        // Update The Cart
+
+                    } else {
+                        Log.d("HomeFragment","Add To Cart Gagal!")
+                    }
+                }
+
+                override fun onFailure(call: Call<PostResponse>, t: Throwable) {
+                    Log.d("HomeFragment","Add To Cart Gagal!")
+                }
+            })
+    }
+
 }
-
-
-
-
-
 
