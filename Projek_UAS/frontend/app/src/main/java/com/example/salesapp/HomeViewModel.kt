@@ -17,6 +17,7 @@ class HomeViewModel : ViewModel() {
 
     val salesUsername: String = "salesA"
 
+
     fun fetchProducts() {
         RetrofitClient.instance.getAllProducts().enqueue(object : Callback<ArrayList<Product>> {
             override fun onResponse(
@@ -53,20 +54,23 @@ class HomeViewModel : ViewModel() {
 
     fun addToCart(product: AddToCartRequest) {
         RetrofitClient.instance.addToCart(product)
-            .enqueue(object : Callback<PostResponse> {
-                override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+            .enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(
+                    call: Call<ApiResponse>,
+                    response: Response<ApiResponse>
+                ) {
                     if (response.isSuccessful) {
-                        Log.d("HomeFragment","Add To Cart Berhasil!")
-                        Log.d("HomeFragment",response.body().toString())
+                        Log.d("HomeFragment", "Add To Cart Berhasil!")
+                        Log.d("HomeFragment", response.body().toString())
                         // Update The Cart
 
                     } else {
-                        Log.d("HomeFragment","Add To Cart Gagal!")
+                        Log.d("HomeFragment", "Add To Cart Gagal!")
                     }
                 }
 
-                override fun onFailure(call: Call<PostResponse>, t: Throwable) {
-                    Log.d("HomeFragment","Add To Cart Gagal!")
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Log.d("HomeFragment", "Add To Cart Gagal!")
                 }
             })
     }

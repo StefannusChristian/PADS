@@ -2,23 +2,20 @@ package com.example.salesapp
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.salesapp.databinding.AddCustomerPopupBinding
 import com.example.salesapp.databinding.FragmentHomePageBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 
-class HomePageFragment : Fragment(){
+class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var homeViewModel: HomeViewModel
@@ -120,13 +117,14 @@ class HomePageFragment : Fragment(){
         productPrice.text = productPriceString
         productDescription.text = product.description
         productPromo.text = product.promo.toString()
-        productId.text = "Product ID: "+product.id.toString()
+        productId.text = "Product ID: " + product.id.toString()
 
 
         val addToCartBtn: Button = dialogBinding.addToCartBtn
-        addToCartBtn.setOnClickListener{
-            val qty: Int = dialogBinding.addToCartQty.text.toString().toIntOrNull()?:0
-            val productToAdd = AddToCartRequest(sales_username = "salesA", product_id = product.id, qty = qty)
+        addToCartBtn.setOnClickListener {
+            val qty: Int = dialogBinding.addToCartQty.text.toString().toIntOrNull() ?: 0
+            val productToAdd =
+                AddToCartRequest(sales_username = "salesA", product_id = product.id, qty = qty)
             homeViewModel.addToCart(productToAdd)
             dialog.dismiss()
         }

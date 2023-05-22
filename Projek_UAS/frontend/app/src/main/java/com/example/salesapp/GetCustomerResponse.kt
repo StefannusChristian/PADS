@@ -16,7 +16,7 @@ data class PostCustomerRequest(
     @SerializedName("customer_img_link") val customer_img_link: String
 )
 
-data class PostResponse(
+data class ApiResponse(
     val message: String,
     val status: String
 )

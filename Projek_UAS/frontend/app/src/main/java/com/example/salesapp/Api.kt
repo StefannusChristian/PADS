@@ -14,12 +14,20 @@ interface Api {
     fun getCustomers(@Path("salesName")salesName: String): Call<ArrayList<GetCustomerResponse>>
 
     @POST("addnewcustomer")
-    fun createCustomer(@Body customerRequest: PostCustomerRequest): Call<PostResponse>
+    fun createCustomer(@Body customerRequest: PostCustomerRequest): Call<ApiResponse>
 
     @PATCH("unsubscribe")
-    fun unsubscribeCustomer(@Body patchCustomerRequest: PatchCustomerRequest): Call<PostResponse>
+    fun unsubscribeCustomer(@Body patchCustomerRequest: PatchCustomerRequest): Call<ApiResponse>
 
     @POST("addcartproduct")
-    fun addToCart(@Body addToCartRequest: AddToCartRequest): Call<PostResponse>
+    fun addToCart(@Body addToCartRequest: AddToCartRequest): Call<ApiResponse>
 
+    @GET("getdetailcarts/{sales_username}")
+    fun getDetailCarts(@Path("sales_username")sales_username: String): Call<ArrayList<GetCartResponse>>
+
+    @POST("removecartproduct")
+    fun removeCartProduct(@Body removeCartRequest: RemoveCartRequest): Call<ApiResponse>
+
+    @POST("removeallcartproduct")
+    fun removeAllCartProduct(@Body removeAllCartRequest: RemoveAllCartRequest): Call<ApiResponse>
 }
