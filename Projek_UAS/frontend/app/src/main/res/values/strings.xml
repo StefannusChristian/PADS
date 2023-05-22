@@ -1,38 +1,5 @@
 <resources>
     <string name="app_name">Sales App</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="image_source">
-        <item>https://source.unsplash.com/featured/?electronics+laptop</item>
-        <item>https://source.unsplash.com/featured/?electronics+smartphone</item>
-        <item>https://source.unsplash.com/featured/?electronics+camera</item>
-        <item>https://source.unsplash.com/featured/?electronics+headphones</item>
-        <item>https://source.unsplash.com/featured/?electronics+tablet</item>
-        <item>https://source.unsplash.com/featured/?electronics+speaker</item>
-    </string-array>
-
-
-    <string-array name="image_desc">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</item>
-        <item>Mauris vitae tincidunt ligula, id hendrerit lectus.</item>
-        <item>Sed scelerisque ipsum non ullamcorper consequat.</item>
-        <item>Proin iaculis nunc eu sem blandit dignissim.</item>
-        <item>Nam ut ipsum malesuada, placerat ligula eget, ullamcorper lorem.</item>
-        <item>Suspendisse nec ante et turpis cursus molestie at at sem.</item>
-    </string-array>
-
-    <string-array name="price_list">
-        <item>Rp 100,000</item>
-        <item>Rp 250,000</item>
-        <item>Rp 500,000</item>
-        <item>Rp 1,000,000</item>
-        <item>Rp 2,500,000</item>
-        <item>Rp 5,000,000</item>
-    </string-array>
-
-    <!--  Home Products -->
-    <string name="price_tag">Rp</string>
-
-    <!--  -->
-
+    <string name="price_tag">Rp %s</string>
 </resources>
