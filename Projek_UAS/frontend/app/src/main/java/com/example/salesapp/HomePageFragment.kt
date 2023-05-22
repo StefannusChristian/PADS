@@ -2,11 +2,11 @@ package com.example.salesapp
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.salesapp.databinding.FragmentHomePageBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 
-class HomePageFragment : Fragment() {
+class HomePageFragment : Fragment(){
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var homeViewModel: HomeViewModel
@@ -31,15 +31,15 @@ class HomePageFragment : Fragment() {
 
         setupRecyclerViews()
 
-        homeAdapter.setOnItemClickCallback(object: HomePageAdapter.OnItemClickCallback{
+        homeAdapter.setOnItemClickCallback(object : HomePageAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Product) {
-                showProductDetailsDialog(data)
+                showProductDetailDialog(data)
             }
         })
 
-        homePromoAdapter.setOnItemClickCallback(object: HomePagePromoAdapter.OnItemClickCallback{
+        homePromoAdapter.setOnItemClickCallback(object : HomePagePromoAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Product) {
-                showProductDetailsDialog(data)
+                showProductDetailDialog(data)
             }
         })
 
@@ -78,6 +78,7 @@ class HomePageFragment : Fragment() {
             }
         }
     }
+
     private fun observePromosList() {
         homeViewModel.promos.observe(viewLifecycleOwner) { promosList ->
             promosList?.let {
@@ -86,8 +87,8 @@ class HomePageFragment : Fragment() {
         }
     }
 
-    private fun showProductDetailsDialog(product: Product) {
-        val dialogBinding = HomeProductPopupBinding.inflate(LayoutInflater.from(context))
+    private fun showProductDetailDialog(product: Product) {
+        val dialogBinding = HomeProductPopupBinding.inflate(LayoutInflater.from(requireContext()))
         val dialog = Dialog(requireContext())
         dialog.setContentView(dialogBinding.root)
 
@@ -100,7 +101,7 @@ class HomePageFragment : Fragment() {
         val productIsPromo = dialogBinding.dialogProductIsPromo
 
         productImage.apply {
-            Glide.with(context)
+            Glide.with(requireContext())
                 .load(product.img_link)
                 .into(this)
         }
@@ -115,5 +116,5 @@ class HomePageFragment : Fragment() {
         dialog.show()
     }
 
-
 }
+

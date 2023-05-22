@@ -1,8 +1,13 @@
 package com.example.salesapp
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -10,23 +15,42 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.salesapp.databinding.CustomerItemBinding
 
-class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
+class CustomerAdapter(private val customerViewModel: CustomerViewModel) : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
-    private val customerList = mutableListOf<Customer>()
+    var customerList = mutableListOf<GetCustomerResponse>()
 
     private var onItemClickCallback: OnItemClickCallback? = null
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+
+    interface OnItemClickCallback {
+        fun onUnsubscribeClicked(salesUsername: String, customerName: String)
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
     inner class CustomerViewHolder(private val binding: CustomerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val customerImage = binding.customerImage
-        private val customerName = binding.customerName
-        private val customerAddress = binding.customerAddress
+        private val customerImage : ImageView = binding.customerImage
+        private val customerName : TextView = binding.customerName
+        private val customerAddress : TextView = binding.customerAddress
+        val unsubscribeButton: Button = binding.unsubscribeBtn
 
-        fun bind(customer: Customer) {
+        init {
+            unsubscribeButton.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val customer = customerList[position]
+                    onItemClickCallback?.onUnsubscribeClicked(
+                        customerViewModel.salesUsername,
+                        customer.username
+                    )
+                }
+            }
+        }
+
+        fun bind(customer: GetCustomerResponse) {
             val requestOptions = RequestOptions().transform(RoundedCorners(8))
             with(binding) {
                 Glide.with(customerImage.context)
@@ -34,7 +58,6 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
                     .apply(requestOptions)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(customerImage)
-                binding.root.setOnClickListener{onItemClickCallback?.onItemClicked(customer)}
                 customerName.text = customer.username
                 customerAddress.text = customer.address
             }
@@ -50,24 +73,14 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>
 
     override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
         val customer = customerList[position]
-
-        holder.itemView.setOnClickListener {
-            onItemClickCallback?.onItemClicked(customer)
-        }
-
         holder.bind(customer)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setCustomers(customers: List<Customer>) {
+    fun setCustomers(customers: List<GetCustomerResponse>) {
         customerList.clear()
         customerList.addAll(customers)
         notifyDataSetChanged()
     }
-
-    interface OnItemClickCallback{
-        fun onItemClicked(data: Customer)
-    }
-
 
 }
