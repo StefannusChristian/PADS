@@ -30,4 +30,8 @@ interface Api {
 
     @POST("removeallcartproduct")
     fun removeAllCartProduct(@Body removeAllCartRequest: RemoveAllCartRequest): Call<ApiResponse>
+
+    @PATCH("updatedetailcarts")
+    fun updateDetailCarts(@Body updateDetailCartsRequest: UpdateDetailCartsRequest): Call<ApiResponse>
+
 }

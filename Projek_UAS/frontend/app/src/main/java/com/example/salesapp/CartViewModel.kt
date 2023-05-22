@@ -42,15 +42,15 @@ class CartViewModel : ViewModel() {
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
-                        Log.d("CartFragment", "Remove Products Berhasil!")
+                        Log.d("CartFragment", "Remove Cart Berhasil!")
                         fetchCartItems()
                     } else {
-                        Log.d("CartFragment", "Remove Products Gagal!")
+                        Log.d("CartFragment", "Remove Cart Gagal!")
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    Log.d("CartFragment", "Remove Products Gagal!")
+                    Log.d("CartFragment", "Remove Cart Gagal!")
                 }
             })
     }
@@ -60,15 +60,33 @@ class CartViewModel : ViewModel() {
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
-                        Log.d("CartFragment", "Remove All Products Berhasil!")
+                        Log.d("CartFragment", "Remove All Cart Berhasil!")
                         fetchCartItems()
                     } else {
-                        Log.d("CartFragment", "Remove All Products Gagal!")
+                        Log.d("CartFragment", "Remove All Cart Gagal!")
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    Log.d("CartFragment", "Remove All Products Gagal!")
+                    Log.d("CartFragment", "Remove All Cart Gagal!")
+                }
+            })
+    }
+
+    fun updateDetailCarts(request: UpdateDetailCartsRequest) {
+        RetrofitClient.instance.updateDetailCarts(request)
+            .enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful) {
+                        Log.d("CartFragment", "Update Detail Carts Berhasil!")
+                        fetchCartItems()
+                    } else {
+                        Log.d("CartFragment", "Update Detail Carts Gagal!")
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Log.d("CartFragment", "Update Detail Carts Gagal!")
                 }
             })
     }

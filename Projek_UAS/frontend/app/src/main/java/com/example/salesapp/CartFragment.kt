@@ -51,7 +51,25 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
         cartViewModel.updateTotalPrice()
 
         toolBarBinding.toolbarBtn.setOnClickListener {
+            val updatedCarts = mutableListOf<UpdatedDetailCart>()
+
+            for (cart in cartAdapter.cartList) {
+                updatedCarts.add(UpdatedDetailCart(cart.id, cart.qty))
+            }
+
+            val request = UpdateDetailCartsRequest(
+                sales_username = sharedViewModel.salesUsername,
+                updated_detail_carts = updatedCarts
+            )
+
+            cartViewModel.updateDetailCarts(request)
+
             findNavController().navigate(R.id.homePageFragment)
+        }
+
+        binding.selectAllCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            cartAdapter.setAllItemsChecked(isChecked)
+            cartViewModel.updateTotalPrice()
         }
 
         val removeAllCartBtn = binding.removeAllBtn
