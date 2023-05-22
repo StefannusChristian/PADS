@@ -111,6 +111,7 @@ class CartAdapter(
 
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding = CartListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -120,9 +121,11 @@ class CartAdapter(
     override fun getItemCount(): Int = cartList.size
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        holder.bind(cartList[position])
-        holder.checkbox.isChecked = cartList[position].isChecked
+        val item = cartList[position]
+        holder.bind(item)
+        holder.checkbox.isChecked = item.isChecked
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCartProducts(cartProduct: List<GetCartResponse>) {
@@ -144,6 +147,9 @@ class CartAdapter(
     fun getSelectedItems(): List<GetCartResponse> {
         return cartList.filter { it.isChecked }
     }
+
+
+
 
 
 }

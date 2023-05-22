@@ -34,4 +34,6 @@ interface Api {
     @PATCH("updatedetailcarts")
     fun updateDetailCarts(@Body updateDetailCartsRequest: UpdateDetailCartsRequest): Call<ApiResponse>
 
+
+
 }

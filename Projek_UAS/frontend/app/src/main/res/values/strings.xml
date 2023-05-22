@@ -2,4 +2,6 @@
     <string name="app_name">Sales App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="price_tag">Rp %s</string>
+    <string name="order_button_text">Order (%1$d)</string>
+    <string name="order_button_default_text">Order</string>
 </resources>

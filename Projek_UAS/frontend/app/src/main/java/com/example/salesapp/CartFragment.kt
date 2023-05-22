@@ -11,10 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesapp.databinding.FragmentCartBinding
 import com.example.salesapp.databinding.MainToolbarBinding
-class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
+class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.OnItemCheckedCallback {
 
     private lateinit var binding: FragmentCartBinding
     private lateinit var toolBarBinding: MainToolbarBinding
+    private var numCheckedItems: Int = 0
+
 
     private lateinit var cartViewModel: CartViewModel
     private lateinit var sharedViewModel: SharedViewModel
@@ -34,6 +36,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
         toolBarBinding = MainToolbarBinding.bind(binding.root.findViewById(R.id.mainToolbar))
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+
 
         setupRecyclerViews()
         observeCartList()
@@ -70,6 +73,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
         binding.selectAllCheckBox.setOnCheckedChangeListener { _, isChecked ->
             cartAdapter.setAllItemsChecked(isChecked)
             cartViewModel.updateTotalPrice()
+            updateOrderButtonText()
         }
 
         val removeAllCartBtn = binding.removeAllBtn
@@ -78,12 +82,17 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
             cartViewModel.removeAllCarts(request)
         }
 
+        updateOrderButtonText()
         return binding.root
     }
 
+
+
     override fun onRemoveCartClicked(salesUsername: String, product_id: Int) {
-        cartViewModel.removeCart(RemoveCartRequest(salesUsername, product_id))
+        val cart = RemoveCartRequest(salesUsername, product_id)
+        cartViewModel.removeCart(cart)
     }
+
 
     private fun setupRecyclerViews() {
         binding.rvCart.apply {
@@ -91,6 +100,8 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
             layoutManager = LinearLayoutManager(context)
             adapter = cartAdapter
         }
+        cartAdapter.setOnItemClickCallback(this)
+        cartAdapter.setOnItemCheckedCallback(this)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -103,10 +114,24 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback {
                 }
                 cartAdapter.notifyDataSetChanged()
                 cartViewModel.updateTotalPrice()
+                updateOrderButtonText()
             }
         }
     }
 
+    private fun updateOrderButtonText() {
+        val selectedCount = cartAdapter.getSelectedItems().size
+        val orderButtonText = if (selectedCount > 0) {
+            getString(R.string.order_button_text, selectedCount)
+        } else {
+            getString(R.string.order_button_default_text)
+        }
+        binding.orderButton.text = orderButtonText
+    }
+
+    override fun onItemChecked(item: GetCartResponse, isChecked: Boolean) {
+        updateOrderButtonText()
+    }
 
 
 }
