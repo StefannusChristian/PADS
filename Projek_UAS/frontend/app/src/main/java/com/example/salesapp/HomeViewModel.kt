@@ -18,8 +18,8 @@ class HomeViewModel : ViewModel() {
     val salesUsername: String = "salesA"
 
 
-    fun fetchProducts() {
-        RetrofitClient.instance.getAllProducts().enqueue(object : Callback<ArrayList<Product>> {
+    fun fetchAvailProducts() {
+        RetrofitClient.instance.getAllAvailableProducts().enqueue(object : Callback<ArrayList<Product>> {
             override fun onResponse(
                 call: Call<ArrayList<Product>>,
                 response: Response<ArrayList<Product>>

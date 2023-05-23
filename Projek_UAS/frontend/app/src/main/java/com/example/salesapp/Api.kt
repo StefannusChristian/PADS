@@ -7,6 +7,9 @@ interface Api {
     @GET("getallproducts")
     fun getAllProducts(): Call<ArrayList<Product>>
 
+    @GET("getallavailableproducts")
+    fun getAllAvailableProducts(): Call<ArrayList<Product>>
+
     @GET("getallpromos")
     fun getAllPromos(): Call<ArrayList<Product>>
 
@@ -34,6 +37,10 @@ interface Api {
     @PATCH("updatedetailcarts")
     fun updateDetailCarts(@Body updateDetailCartsRequest: UpdateDetailCartsRequest): Call<ApiResponse>
 
+    @POST("addorder")
+    fun addOrder(@Body addOrderRequest: AddOrderRequest): Call<ApiResponse>
 
+    @POST("register")
+    fun register(@Body)
 
 }

@@ -4,4 +4,5 @@
     <string name="price_tag">Rp %s</string>
     <string name="order_button_text">Order (%1$d)</string>
     <string name="order_button_default_text">Order</string>
+    <string name="product_id">Product ID: %s</string>
 </resources>

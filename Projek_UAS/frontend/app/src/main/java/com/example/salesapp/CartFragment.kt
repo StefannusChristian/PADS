@@ -82,6 +82,33 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
             cartViewModel.removeAllCarts(request)
         }
 
+        val orderBtn = binding.orderButton
+        orderBtn.setOnClickListener {
+            val selectedItems = cartAdapter.getSelectedItems()
+            val productIds = selectedItems.map { it.id }
+            var custUsername = binding.customerNameEt.text.toString()
+
+            val request = AddOrderRequest(
+                sales_username = sharedViewModel.salesUsername,
+                customer_username = custUsername,
+                cartproductids = productIds
+            )
+
+            val updatedCarts = mutableListOf<UpdatedDetailCart>()
+            for (cart in selectedItems) {
+                updatedCarts.add(UpdatedDetailCart(cart.id, cart.qty))
+            }
+            val updateCartRequest = UpdateDetailCartsRequest(
+                sales_username = sharedViewModel.salesUsername,
+                updated_detail_carts = updatedCarts
+            )
+
+            cartViewModel.addOrder(request, updateCartRequest)
+            custUsername = ""
+        }
+
+
+
         updateOrderButtonText()
         return binding.root
     }

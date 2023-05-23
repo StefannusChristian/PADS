@@ -36,3 +36,9 @@ data class UpdatedDetailCart(
     val id: Int,
     val qty: Int
 )
+
+data class AddOrderRequest(
+    val cartproductids: List<Int>,
+    val customer_username: String,
+    val sales_username: String
+)

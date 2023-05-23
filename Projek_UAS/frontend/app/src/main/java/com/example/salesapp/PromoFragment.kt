@@ -76,7 +76,7 @@ class PromoFragment : Fragment() {
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
-        val productPromo = dialogBinding.dialogProductIsPromo
+        val productPromo = dialogBinding.dialogProductPromo
 
         productImage.apply {
             Glide.with(context)

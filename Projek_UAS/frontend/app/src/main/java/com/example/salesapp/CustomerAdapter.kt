@@ -1,13 +1,11 @@
 package com.example.salesapp
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -22,7 +20,7 @@ class CustomerAdapter(private val customerViewModel: CustomerViewModel) : Recycl
     private var onItemClickCallback: OnItemClickCallback? = null
 
     interface OnItemClickCallback {
-        fun onUnsubscribeClicked(salesUsername: String, customerName: String)
+        fun onUnsubscribeClicked(sales_username: String, customer_name: String)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -44,7 +42,7 @@ class CustomerAdapter(private val customerViewModel: CustomerViewModel) : Recycl
                     val customer = customerList[position]
                     onItemClickCallback?.onUnsubscribeClicked(
                         customerViewModel.salesUsername,
-                        customer.username
+                        customer.name
                     )
                 }
             }
@@ -58,7 +56,7 @@ class CustomerAdapter(private val customerViewModel: CustomerViewModel) : Recycl
                     .apply(requestOptions)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(customerImage)
-                customerName.text = customer.username
+                customerName.text = customer.name
                 customerAddress.text = customer.address
             }
         }

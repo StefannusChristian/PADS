@@ -50,7 +50,7 @@ class HomePageFragment : Fragment() {
         observeProductList()
         observePromosList()
 
-        homeViewModel.fetchProducts()
+        homeViewModel.fetchAvailProducts()
         homeViewModel.fetchPromos()
 
         val goToPromo: Button = binding.goToPromoBtn
@@ -96,13 +96,11 @@ class HomePageFragment : Fragment() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(dialogBinding.root)
 
-        val priceTag = getString(R.string.price_tag)
-
         val productImage = dialogBinding.dialogProductImage
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
-        val productPromo = dialogBinding.dialogProductIsPromo
+        val productPromo = dialogBinding.dialogProductPromo
         val productId = dialogBinding.dialogProductId
 
         productImage.apply {
@@ -113,11 +111,10 @@ class HomePageFragment : Fragment() {
 
         productName.text = product.name
 
-        val productPriceString = priceTag + " " + product.price
-        productPrice.text = productPriceString
+        productPrice.text = getString(R.string.price_tag,product.price.toString())
         productDescription.text = product.description
         productPromo.text = product.promo.toString()
-        productId.text = "Product ID: " + product.id.toString()
+        productId.text = getString(R.string.product_id,product.id.toString())
 
 
         val addToCartBtn: Button = dialogBinding.addToCartBtn

@@ -91,6 +91,25 @@ class CartViewModel : ViewModel() {
             })
     }
 
+    fun addOrder(request: AddOrderRequest, cart: UpdateDetailCartsRequest) {
+        RetrofitClient.instance.addOrder(request)
+            .enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful) {
+                        Log.d("CartFragment",response.body().toString())
+                        Log.d("CartFragment", "Add Order Berhasil!")
+                        updateDetailCarts(cart)
+                    } else {
+                        Log.d("CartFragment", "Add Order Gagal!")
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Log.d("CartFragment", "Add Order Gagal!")
+                }
+            })
+    }
+
     fun updateTotalPrice() {
         val selectedItems = getSelectedItems()
         var total = 0.0

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -22,7 +21,7 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
     private lateinit var customerViewModel: CustomerViewModel
     private lateinit var toolBarBinding: MainToolbarBinding
     private lateinit var addCustomerBinding: AddCustomerPopupBinding
-    private val customerAdapter:  CustomerAdapter by lazy { CustomerAdapter(customerViewModel) }
+    private val customerAdapter: CustomerAdapter by lazy { CustomerAdapter(customerViewModel) }
     private val customerTag = "CustomerFragment"
 
     override fun onCreateView(
@@ -41,7 +40,7 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
         customerViewModel.fetchCustomers()
 
         val sortBtn = binding.customerSortbtn
-        sortBtn.setOnClickListener{
+        sortBtn.setOnClickListener {
             showSortDialog()
         }
 
@@ -51,7 +50,7 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
 
         val addCustomerBtn = binding.addCustomerBtn
         addCustomerBtn.setOnClickListener {
-            Log.d(customerTag,"Button Di Pencet!")
+            Log.d(customerTag, "Button Di Pencet!")
             showAddDialog()
         }
 
@@ -63,7 +62,7 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
     }
 
     private fun showSortDialog() {
-        val options = arrayOf("Name","Address")
+        val options = arrayOf("Name", "Address")
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Sort By")
@@ -86,10 +85,14 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
             val username = addCustomerBinding.customerUsername.text.toString()
             val address = addCustomerBinding.customerAddress.text.toString()
             val imageLink = addCustomerBinding.customerImageLink.text.toString()
-            val newCustomer = PostCustomerRequest(sales_username = customerViewModel.salesUsername, customer_username = username, customer_address = address, customer_img_link = imageLink)
+            val newCustomer = PostCustomerRequest(
+                sales_username = customerViewModel.salesUsername,
+                customer_username = username,
+                customer_address = address,
+                customer_img_link = imageLink
+            )
             Log.d(customerTag, newCustomer.toString())
             customerViewModel.addCustomer(newCustomer)
-            Toast.makeText(requireContext(), "Add Button Dipencet!", Toast.LENGTH_SHORT).show()
             Log.d(customerTag, "ADD BUTTON DIPENCET!")
             dialog.dismiss()
         }

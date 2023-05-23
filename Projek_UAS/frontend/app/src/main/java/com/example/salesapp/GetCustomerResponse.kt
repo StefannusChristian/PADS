@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class GetCustomerResponse(
     val address: String,
-    val sales_id: String,
-    val username: String,
+    val sales: String,
+    val name: String,
     val img_link: String
 )
 

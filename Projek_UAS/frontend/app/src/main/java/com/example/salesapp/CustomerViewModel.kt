@@ -61,11 +61,9 @@ class CustomerViewModel: ViewModel() {
             })
     }
 
-
-
     fun sortCustomersByName() {
         val sortedList = customers.value?.toMutableList()?.apply {
-            sortBy { it.username }
+            sortBy { it.name }
         }
         customers.value = sortedList as ArrayList<GetCustomerResponse>?
     }
