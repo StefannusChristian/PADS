@@ -15,7 +15,7 @@ class CartAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    private val cartList = mutableListOf<GetCartResponse>()
+    val cartList = mutableListOf<GetCartResponse>()
     private var onItemClickCallback: OnItemClickCallback? = null
     private var onItemCheckedCallback: OnItemCheckedCallback? = null
 
@@ -111,6 +111,7 @@ class CartAdapter(
 
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding = CartListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -120,9 +121,11 @@ class CartAdapter(
     override fun getItemCount(): Int = cartList.size
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        holder.bind(cartList[position])
-        holder.checkbox.isChecked = cartList[position].isChecked
+        val item = cartList[position]
+        holder.bind(item)
+        holder.checkbox.isChecked = item.isChecked
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCartProducts(cartProduct: List<GetCartResponse>) {
@@ -130,4 +133,23 @@ class CartAdapter(
         cartList.addAll(cartProduct)
         notifyDataSetChanged()
     }
+
+    // Add this method to set the checked state of all checkboxes
+    @SuppressLint("NotifyDataSetChanged")
+    fun setAllItemsChecked(checked: Boolean) {
+        for (item in cartList) {
+            item.isChecked = checked
+        }
+        notifyDataSetChanged()
+    }
+
+    // Add this method to get a list of all selected items
+    fun getSelectedItems(): List<GetCartResponse> {
+        return cartList.filter { it.isChecked }
+    }
+
+
+
+
+
 }

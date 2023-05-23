@@ -27,4 +27,12 @@ data class RemoveAllCartRequest(
     @SerializedName("sales_username") val sales_username: String,
 )
 
+data class UpdateDetailCartsRequest(
+    val sales_username: String,
+    val updated_detail_carts: List<UpdatedDetailCart>
+)
 
+data class UpdatedDetailCart(
+    val id: Int,
+    val qty: Int
+)
