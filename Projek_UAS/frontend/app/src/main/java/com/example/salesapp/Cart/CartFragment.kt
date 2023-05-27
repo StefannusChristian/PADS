@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesapp.*
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.CartFragmentBinding
 import com.example.salesapp.databinding.ToolbarMainLayoutBinding
 class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.OnItemCheckedCallback {

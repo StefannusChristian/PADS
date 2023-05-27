@@ -1,21 +1,21 @@
-package com.example.salesapp
+package com.example.salesapp.Register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.salesapp.databinding.LoginFragmentBinding
+import com.example.salesapp.databinding.SignUpFragmentBinding
 
-class LoginFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
-    private lateinit var binding: LoginFragmentBinding
+    private lateinit var binding: SignUpFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = LoginFragmentBinding.inflate(inflater, container, false)
+        binding = SignUpFragmentBinding.inflate(inflater, container, false)
 
 
 

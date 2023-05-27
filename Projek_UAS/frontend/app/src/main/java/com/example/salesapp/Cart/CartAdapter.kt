@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.salesapp.GetCartResponse
 import com.example.salesapp.R
-import com.example.salesapp.SharedViewModel
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.CartRvListItemBinding
 
 class CartAdapter(

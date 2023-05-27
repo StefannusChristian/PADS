@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.SharedViewModel
 
 import androidx.lifecycle.ViewModel
 
