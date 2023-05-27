@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,25 +10,25 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.example.salesapp.databinding.HomeListItemBinding
+import com.example.salesapp.databinding.HomeRvListItemBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 
 class HomePageAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
 
     private lateinit var popupBinding: HomeProductPopupBinding
-    private val productList = mutableListOf<Product>()
+    private val productResponseList = mutableListOf<ProductResponse>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
 
     interface OnItemClickCallback{
-        fun onItemClicked(data: Product)
+        fun onItemClicked(data: ProductResponse)
         fun onAddToCartClicked(salesUsername: String, productId: Int, qty:Int)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class HomeViewHolder(private val binding: HomeListItemBinding) :
+    inner class HomeViewHolder(private val binding: HomeRvListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val productImage = binding.productImage
@@ -41,7 +41,7 @@ class HomePageAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.A
             addToCartBtn.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val product = productList[position]
+                    val product = productResponseList[position]
                     val qty = qtyEditText.text.toString().toIntOrNull() ?: 0
                     onItemClickCallback?.onAddToCartClicked(
                         homeViewModel.salesUsername,product.id,qty
@@ -50,29 +50,29 @@ class HomePageAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.A
             }
         }
 
-        fun bind(product: Product) {
+        fun bind(productResponse: ProductResponse) {
             val requestOptions = RequestOptions().transform(RoundedCorners(8))
             with(binding) {
                 Glide.with(productImage.context)
-                    .load(product.img_link)
+                    .load(productResponse.img_link)
                     .apply(requestOptions)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(productImage)
-                binding.root.setOnClickListener{onItemClickCallback?.onItemClicked(product)}
-                productDesc.text = product.name
+                binding.root.setOnClickListener{onItemClickCallback?.onItemClicked(productResponse)}
+                productDesc.text = productResponse.name
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding = HomeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = HomeRvListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = productList.size
+    override fun getItemCount(): Int = productResponseList.size
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val product = productList[position]
+        val product = productResponseList[position]
 
         holder.itemView.setOnClickListener {
             onItemClickCallback?.onItemClicked(product)
@@ -82,9 +82,9 @@ class HomePageAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.A
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setProducts(products: List<Product>) {
-        productList.clear()
-        productList.addAll(products)
+    fun setProducts(productResponses: List<ProductResponse>) {
+        productResponseList.clear()
+        productResponseList.addAll(productResponses)
         notifyDataSetChanged()
     }
 

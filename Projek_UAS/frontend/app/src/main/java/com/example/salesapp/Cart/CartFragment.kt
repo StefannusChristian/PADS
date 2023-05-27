@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Cart
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.salesapp.databinding.FragmentCartBinding
-import com.example.salesapp.databinding.MainToolbarBinding
+import com.example.salesapp.*
+import com.example.salesapp.databinding.CartFragmentBinding
+import com.example.salesapp.databinding.ToolbarMainLayoutBinding
 class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.OnItemCheckedCallback {
 
-    private lateinit var binding: FragmentCartBinding
-    private lateinit var toolBarBinding: MainToolbarBinding
+    private lateinit var binding: CartFragmentBinding
+    private lateinit var toolBarBinding: ToolbarMainLayoutBinding
     private var numCheckedItems: Int = 0
 
 
@@ -32,8 +33,8 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCartBinding.inflate(inflater, container, false)
-        toolBarBinding = MainToolbarBinding.bind(binding.root.findViewById(R.id.mainToolbar))
+        binding = CartFragmentBinding.inflate(inflater, container, false)
+        toolBarBinding = ToolbarMainLayoutBinding.bind(binding.root.findViewById(R.id.mainToolbar))
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
 

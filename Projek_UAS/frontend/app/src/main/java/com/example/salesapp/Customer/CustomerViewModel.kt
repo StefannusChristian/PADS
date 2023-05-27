@@ -1,8 +1,10 @@
-package com.example.salesapp
+package com.example.salesapp.Customer
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.salesapp.*
+import com.example.salesapp.API.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +16,7 @@ class CustomerViewModel: ViewModel() {
     val salesUsername: String = "salesA"
 
     fun fetchCustomers() {
-        RetrofitClient.instance.getCustomers(salesUsername).enqueue(object : Callback<ArrayList<GetCustomerResponse>> {
+        RetrofitClient.customers_instance.getCustomers(salesUsername).enqueue(object : Callback<ArrayList<GetCustomerResponse>> {
             override fun onResponse(
                 call: Call<ArrayList<GetCustomerResponse>>,
                 response: Response<ArrayList<GetCustomerResponse>>
@@ -31,7 +33,7 @@ class CustomerViewModel: ViewModel() {
     }
 
     fun addCustomer(customer: PostCustomerRequest) {
-        RetrofitClient.instance.createCustomer(customer)
+        RetrofitClient.customers_instance.createCustomer(customer)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
@@ -44,7 +46,7 @@ class CustomerViewModel: ViewModel() {
     }
 
     fun unsubscribeCustomer(customer: PatchCustomerRequest) {
-        RetrofitClient.instance.unsubscribeCustomer(customer)
+        RetrofitClient.customers_instance.unsubscribeCustomer(customer)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {

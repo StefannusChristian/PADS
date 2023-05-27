@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Customer
 
 import android.app.Dialog
 import android.os.Bundle
@@ -11,16 +11,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.salesapp.databinding.AddCustomerPopupBinding
-import com.example.salesapp.databinding.FragmentCustomerBinding
-import com.example.salesapp.databinding.MainToolbarBinding
+import com.example.salesapp.PatchCustomerRequest
+import com.example.salesapp.PostCustomerRequest
+import com.example.salesapp.R
+import com.example.salesapp.databinding.CustomerAddCustPopupBinding
+import com.example.salesapp.databinding.CustomerFragmentBinding
+import com.example.salesapp.databinding.ToolbarMainLayoutBinding
 
 class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
 
-    private lateinit var binding: FragmentCustomerBinding
+    private lateinit var binding: CustomerFragmentBinding
     private lateinit var customerViewModel: CustomerViewModel
-    private lateinit var toolBarBinding: MainToolbarBinding
-    private lateinit var addCustomerBinding: AddCustomerPopupBinding
+    private lateinit var toolBarBinding: ToolbarMainLayoutBinding
+    private lateinit var addCustomerBinding: CustomerAddCustPopupBinding
     private val customerAdapter: CustomerAdapter by lazy { CustomerAdapter(customerViewModel) }
     private val customerTag = "CustomerFragment"
 
@@ -28,8 +31,8 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCustomerBinding.inflate(inflater, container, false)
-        toolBarBinding = MainToolbarBinding.bind(binding.root.findViewById(R.id.mainToolbar))
+        binding = CustomerFragmentBinding.inflate(inflater, container, false)
+        toolBarBinding = ToolbarMainLayoutBinding.bind(binding.root.findViewById(R.id.mainToolbar))
         customerViewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
 
         setupRecyclerViews()
@@ -77,7 +80,7 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
 
     private fun showAddDialog() {
         val dialog = Dialog(requireContext())
-        val addCustomerBinding = AddCustomerPopupBinding.inflate(dialog.layoutInflater)
+        val addCustomerBinding = CustomerAddCustPopupBinding.inflate(dialog.layoutInflater)
         dialog.setContentView(addCustomerBinding.root)
 
         val addBtn = addCustomerBinding.addBtn

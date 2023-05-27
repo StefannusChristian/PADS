@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Home
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,12 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.salesapp.databinding.FragmentHomePageBinding
+import com.example.salesapp.AddToCartRequest
+import com.example.salesapp.R
+import com.example.salesapp.databinding.HomeFragmentBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 
 class HomePageFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomePageBinding
+    private lateinit var binding: HomeFragmentBinding
     private lateinit var homeViewModel: HomeViewModel
     private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(homeViewModel) }
     private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
@@ -26,13 +28,13 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomePageBinding.inflate(inflater, container, false)
+        binding = HomeFragmentBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         setupRecyclerViews()
 
         homeAdapter.setOnItemClickCallback(object : HomePageAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Product) {
+            override fun onItemClicked(data: ProductResponse) {
                 showProductDetailDialog(data)
             }
 
@@ -42,7 +44,7 @@ class HomePageFragment : Fragment() {
         })
 
         homePromoAdapter.setOnItemClickCallback(object : HomePagePromoAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Product) {
+            override fun onItemClicked(data: ProductResponse) {
                 showProductDetailDialog(data)
             }
         })
@@ -91,7 +93,7 @@ class HomePageFragment : Fragment() {
         }
     }
 
-    private fun showProductDetailDialog(product: Product) {
+    private fun showProductDetailDialog(productResponse: ProductResponse) {
         val dialogBinding = HomeProductPopupBinding.inflate(LayoutInflater.from(requireContext()))
         val dialog = Dialog(requireContext())
         dialog.setContentView(dialogBinding.root)
@@ -105,23 +107,23 @@ class HomePageFragment : Fragment() {
 
         productImage.apply {
             Glide.with(requireContext())
-                .load(product.img_link)
+                .load(productResponse.img_link)
                 .into(this)
         }
 
-        productName.text = product.name
+        productName.text = productResponse.name
 
-        productPrice.text = getString(R.string.price_tag,product.price.toString())
-        productDescription.text = product.description
-        productPromo.text = product.promo.toString()
-        productId.text = getString(R.string.product_id,product.id.toString())
+        productPrice.text = getString(R.string.price_tag,productResponse.price.toString())
+        productDescription.text = productResponse.description
+        productPromo.text = productResponse.promo.toString()
+        productId.text = getString(R.string.product_id,productResponse.id.toString())
 
 
         val addToCartBtn: Button = dialogBinding.addToCartBtn
         addToCartBtn.setOnClickListener {
             val qty: Int = dialogBinding.addToCartQty.text.toString().toIntOrNull() ?: 0
             val productToAdd =
-                AddToCartRequest(sales_username = "salesA", product_id = product.id, qty = qty)
+                AddToCartRequest(sales_username = "salesA", product_id = productResponse.id, qty = qty)
             homeViewModel.addToCart(productToAdd)
             dialog.dismiss()
         }

@@ -1,18 +1,25 @@
-package com.example.salesapp
+package com.example.salesapp.API
 
+import com.example.salesapp.*
+import com.example.salesapp.Home.ProductResponse
 import retrofit2.Call
 import retrofit2.http.*
 
-interface Api {
+interface productAPI {
     @GET("getallproducts")
-    fun getAllProducts(): Call<ArrayList<Product>>
+    fun getAllProducts(): Call<ArrayList<ProductResponse>>
 
     @GET("getallavailableproducts")
-    fun getAllAvailableProducts(): Call<ArrayList<Product>>
+    fun getAllAvailableProducts(): Call<ArrayList<ProductResponse>>
+}
 
+interface promoAPI {
     @GET("getallpromos")
-    fun getAllPromos(): Call<ArrayList<Product>>
+    fun getAllPromos(): Call<ArrayList<ProductResponse>>
 
+}
+
+interface customersAPI {
     @GET("getcustomers/{salesName}")
     fun getCustomers(@Path("salesName")salesName: String): Call<ArrayList<GetCustomerResponse>>
 
@@ -22,6 +29,9 @@ interface Api {
     @PATCH("unsubscribe")
     fun unsubscribeCustomer(@Body patchCustomerRequest: PatchCustomerRequest): Call<ApiResponse>
 
+}
+
+interface cartAPI {
     @POST("addcartproduct")
     fun addToCart(@Body addToCartRequest: AddToCartRequest): Call<ApiResponse>
 
@@ -39,8 +49,5 @@ interface Api {
 
     @POST("addorder")
     fun addOrder(@Body addOrderRequest: AddOrderRequest): Call<ApiResponse>
-
-    @POST("register")
-    fun register(@Body)
 
 }

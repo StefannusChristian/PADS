@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.salesapp.HomePageFragment"
+        android:name="com.example.salesapp.Home.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" >
+        tools:layout="@layout/home_fragment" >
         <action
             android:id="@+id/action_homePageFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
@@ -26,9 +26,9 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.salesapp.CartFragment"
+        android:name="com.example.salesapp.Cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/cart_fragment" >
         <action
             android:id="@+id/action_cartFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
@@ -36,18 +36,18 @@
 
     <fragment
         android:id="@+id/inventoryFragment"
-        android:name="com.example.salesapp.InventoryFragment"
+        android:name="com.example.salesapp.Inventory.InventoryFragment"
         android:label="fragment_inventory"
-        tools:layout="@layout/fragment_inventory" >
+        tools:layout="@layout/inventory_fragment" >
         <action
             android:id="@+id/action_inventoryFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
     <fragment
         android:id="@+id/promoFragment"
-        android:name="com.example.salesapp.PromoFragment"
+        android:name="com.example.salesapp.Promo.PromoFragment"
         android:label="PromoFragment"
-        tools:layout="@layout/fragment_promo"
+        tools:layout="@layout/promo_fragment"
         >
         <action
             android:id="@+id/action_promoFragment_to_homePageFragment"
@@ -55,8 +55,8 @@
     </fragment>
     <fragment
         android:id="@+id/customerFragment"
-        android:name="com.example.salesapp.CustomerFragment"
-        tools:layout="@layout/fragment_customer"
+        android:name="com.example.salesapp.Customer.CustomerFragment"
+        tools:layout="@layout/customer_fragment"
         android:label="CustomerFragment" >
         <action
             android:id="@+id/action_customerFragment_to_homePageFragment"

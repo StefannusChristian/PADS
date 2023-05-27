@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Customer
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.example.salesapp.databinding.CustomerItemBinding
+import com.example.salesapp.GetCustomerResponse
+import com.example.salesapp.databinding.CustomerRvListItemBinding
 
 class CustomerAdapter(private val customerViewModel: CustomerViewModel) : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
@@ -27,7 +28,7 @@ class CustomerAdapter(private val customerViewModel: CustomerViewModel) : Recycl
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class CustomerViewHolder(private val binding: CustomerItemBinding) :
+    inner class CustomerViewHolder(private val binding: CustomerRvListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val customerImage : ImageView = binding.customerImage
@@ -63,7 +64,7 @@ class CustomerAdapter(private val customerViewModel: CustomerViewModel) : Recycl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
-        val binding = CustomerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CustomerRvListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CustomerViewHolder(binding)
     }
 

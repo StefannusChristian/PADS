@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Promo
 
 import android.app.Dialog
 import android.os.Bundle
@@ -10,14 +10,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.example.salesapp.databinding.FragmentPromoBinding
+import com.example.salesapp.Home.HomeViewModel
+import com.example.salesapp.Home.ProductResponse
+import com.example.salesapp.R
+import com.example.salesapp.databinding.PromoFragmentBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
-import com.example.salesapp.databinding.MainToolbarBinding
+import com.example.salesapp.databinding.ToolbarMainLayoutBinding
 
 class PromoFragment : Fragment() {
 
-    private lateinit var binding: FragmentPromoBinding
-    private lateinit var toolBarBinding: MainToolbarBinding
+    private lateinit var binding: PromoFragmentBinding
+    private lateinit var toolBarBinding: ToolbarMainLayoutBinding
     private lateinit var homeViewModel: HomeViewModel
     private val promoAdapter: PromoAdapter by lazy { PromoAdapter() }
 
@@ -26,14 +29,14 @@ class PromoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentPromoBinding.inflate(inflater, container, false)
-        toolBarBinding = MainToolbarBinding.bind(binding.root.findViewById(R.id.mainToolbar))
+        binding = PromoFragmentBinding.inflate(inflater, container, false)
+        toolBarBinding = ToolbarMainLayoutBinding.bind(binding.root.findViewById(R.id.mainToolbar))
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         setupRecyclerViews()
 
-        promoAdapter.setOnItemClickCallback(object:PromoAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: Product) {
+        promoAdapter.setOnItemClickCallback(object: PromoAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ProductResponse) {
                 showProductDetailsDialog(data)
             }
         })
@@ -65,7 +68,7 @@ class PromoFragment : Fragment() {
         }
     }
 
-    private fun showProductDetailsDialog(product: Product) {
+    private fun showProductDetailsDialog(productResponse: ProductResponse) {
         val dialogBinding = HomeProductPopupBinding.inflate(LayoutInflater.from(context))
         val dialog = Dialog(requireContext())
         dialog.setContentView(dialogBinding.root)
@@ -80,16 +83,16 @@ class PromoFragment : Fragment() {
 
         productImage.apply {
             Glide.with(context)
-                .load(product.img_link)
+                .load(productResponse.img_link)
                 .into(this)
         }
 
-        productName.text = product.name
+        productName.text = productResponse.name
 
-        val productPriceString = priceTag + " " + product.price
+        val productPriceString = priceTag + " " + productResponse.price
         productPrice.text = productPriceString
-        productDescription.text = product.description
-        productPromo.text = product.promo.toString()
+        productDescription.text = productResponse.description
+        productPromo.text = productResponse.promo.toString()
 
         dialog.show()
     }

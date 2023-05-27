@@ -1,8 +1,10 @@
-package com.example.salesapp
+package com.example.salesapp.Cart
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.salesapp.*
+import com.example.salesapp.API.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,7 +15,7 @@ class CartViewModel : ViewModel() {
     val cartList: MutableLiveData<ArrayList<GetCartResponse>?> = MutableLiveData()
 
     fun fetchCartItems() {
-        RetrofitClient.instance.getDetailCarts("salesA")
+        RetrofitClient.cart_instance.getDetailCarts("salesA")
             .enqueue(object : Callback<ArrayList<GetCartResponse>> {
                 override fun onResponse(
                     call: Call<ArrayList<GetCartResponse>>,
@@ -38,7 +40,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun removeCart(cart: RemoveCartRequest) {
-        RetrofitClient.instance.removeCartProduct(cart)
+        RetrofitClient.cart_instance.removeCartProduct(cart)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
@@ -56,7 +58,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun removeAllCarts(request: RemoveAllCartRequest) {
-        RetrofitClient.instance.removeAllCartProduct(request)
+        RetrofitClient.cart_instance.removeAllCartProduct(request)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
@@ -74,7 +76,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun updateDetailCarts(request: UpdateDetailCartsRequest) {
-        RetrofitClient.instance.updateDetailCarts(request)
+        RetrofitClient.cart_instance.updateDetailCarts(request)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
@@ -92,7 +94,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun addOrder(request: AddOrderRequest, cart: UpdateDetailCartsRequest) {
-        RetrofitClient.instance.addOrder(request)
+        RetrofitClient.cart_instance.addOrder(request)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {

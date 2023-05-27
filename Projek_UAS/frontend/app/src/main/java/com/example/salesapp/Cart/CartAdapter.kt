@@ -1,4 +1,4 @@
-package com.example.salesapp
+package com.example.salesapp.Cart
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import com.example.salesapp.databinding.CartListItemBinding
+import com.example.salesapp.GetCartResponse
+import com.example.salesapp.R
+import com.example.salesapp.SharedViewModel
+import com.example.salesapp.databinding.CartRvListItemBinding
+
 class CartAdapter(
     private val cartViewModel: CartViewModel,
     private val sharedViewModel: SharedViewModel,
@@ -35,7 +37,7 @@ class CartAdapter(
         this.onItemCheckedCallback = onItemCheckedCallback
     }
 
-    inner class CartViewHolder(private val binding: CartListItemBinding) :
+    inner class CartViewHolder(private val binding: CartRvListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private val cartImage = binding.cartImage
@@ -113,7 +115,7 @@ class CartAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
-        val binding = CartListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CartRvListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return CartViewHolder(binding)
     }

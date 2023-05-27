@@ -1,6 +1,6 @@
-package com.example.salesapp
+package com.example.salesapp.Home
 
-data class Product(
+data class ProductResponse(
     val available_qty: Int,
     val category: String,
     val description: String,

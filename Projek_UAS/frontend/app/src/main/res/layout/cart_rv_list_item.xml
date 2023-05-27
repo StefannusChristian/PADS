@@ -79,10 +79,11 @@
             <Button
                 android:id="@+id/removeCartBtn"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/baseline_restore_from_trash_24"
+                android:layout_height="match_parent"
                 android:textSize="18sp"
-                />
+                app:icon="@drawable/baseline_restore_from_trash_24"
+                app:iconGravity="textTop"
+                app:iconPadding="0dp" />
 
         </LinearLayout>
 
