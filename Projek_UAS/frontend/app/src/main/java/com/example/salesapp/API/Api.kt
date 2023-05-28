@@ -2,12 +2,18 @@ package com.example.salesapp.API
 
 import com.example.salesapp.*
 import com.example.salesapp.Home.ProductResponse
+import com.example.salesapp.Login.LoginItem
+import com.example.salesapp.Login.LoginResponse
+import com.example.salesapp.SignUp.SignupItem
+import com.example.salesapp.Transaction.OrderItem
+import com.example.salesapp.Transaction.PatchcancelorderRequest
 import retrofit2.Call
 import retrofit2.http.*
+import retrofit2.Response
 
 interface productAPI {
     @GET("getallproducts")
-    fun getAllProducts(): Call<ArrayList<ProductResponse>>
+    suspend fun getAllProducts(): Response<List<ProductResponse>>
 
     @GET("getallavailableproducts")
     fun getAllAvailableProducts(): Call<ArrayList<ProductResponse>>
@@ -16,6 +22,9 @@ interface productAPI {
 interface promoAPI {
     @GET("getallpromos")
     fun getAllPromos(): Call<ArrayList<ProductResponse>>
+
+    @GET("getallavailablepromos")
+    fun getAllAvailablePromos(): Call<ArrayList<ProductResponse>>
 
 }
 
@@ -51,3 +60,27 @@ interface cartAPI {
     fun addOrder(@Body addOrderRequest: AddOrderRequest): Call<ApiResponse>
 
 }
+
+interface loginRegisterAPI{
+    @POST("login")
+    suspend fun postLogin(
+        @Body user_pass : LoginItem
+    ):Response<LoginResponse>
+
+    @POST("register")
+    suspend fun postSignUp(
+        @Body regis_info : SignupItem
+    ):Response<ApiResponse>
+}
+
+interface transactionAPI{
+    @GET("getorders/salesA")
+    suspend fun getOrder(): Response<List<OrderItem>>
+
+    @PATCH("cancelorder")
+    suspend fun patchOrder(
+        @Body item: PatchcancelorderRequest
+    ):Response<ApiResponse>
+}
+
+

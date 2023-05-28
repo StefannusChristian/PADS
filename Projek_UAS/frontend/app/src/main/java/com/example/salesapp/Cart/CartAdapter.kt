@@ -48,8 +48,7 @@ class CartAdapter(
         private val cartDecrementButton = binding.cartDecBtn
         private val cartCheckBox = binding.cartCheckbox
 
-        val removeCartButton = binding.removeCartBtn
-        val checkbox = binding.cartCheckbox
+        private val removeCartButton = binding.removeCartBtn
 
         init {
             removeCartButton.setOnClickListener {
@@ -63,13 +62,14 @@ class CartAdapter(
                 }
             }
 
-            cartCheckBox.setOnClickListener {
+            cartCheckBox.setOnCheckedChangeListener { _, isChecked ->
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val cart = cartList[position]
-                    cart.isChecked = binding.cartCheckbox.isChecked
-                    onItemCheckedCallback?.onItemChecked(cart, binding.cartCheckbox.isChecked)
+                    cart.isChecked = isChecked
+                    onItemCheckedCallback?.onItemChecked(cart, isChecked)
                     cartViewModel.updateTotalPrice()
+
                 }
             }
         }
@@ -93,30 +93,14 @@ class CartAdapter(
                     cartQuantity.text = response.qty.toString()
                 }
 
-                cartCheckBox.setOnCheckedChangeListener(null)
                 cartCheckBox.isChecked = response.isChecked
-
-                cartCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                    response.isChecked = isChecked
-                    cartViewModel.updateTotalPrice()
-                }
-
-                cartCheckBox.isChecked = response.isChecked
-                cartCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                    response.isChecked = isChecked
-                    onItemCheckedCallback?.onItemChecked(response, isChecked)
-                    cartViewModel.updateTotalPrice()
-                }
-
             }
         }
 
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding = CartRvListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         return CartViewHolder(binding)
     }
 
@@ -125,9 +109,7 @@ class CartAdapter(
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = cartList[position]
         holder.bind(item)
-        holder.checkbox.isChecked = item.isChecked
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCartProducts(cartProduct: List<GetCartResponse>) {
@@ -136,7 +118,6 @@ class CartAdapter(
         notifyDataSetChanged()
     }
 
-    // Add this method to set the checked state of all checkboxes
     @SuppressLint("NotifyDataSetChanged")
     fun setAllItemsChecked(checked: Boolean) {
         for (item in cartList) {
@@ -145,13 +126,8 @@ class CartAdapter(
         notifyDataSetChanged()
     }
 
-    // Add this method to get a list of all selected items
     fun getSelectedItems(): List<GetCartResponse> {
         return cartList.filter { it.isChecked }
     }
-
-
-
-
 
 }

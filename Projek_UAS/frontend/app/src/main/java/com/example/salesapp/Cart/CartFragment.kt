@@ -6,29 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesapp.*
+import com.example.salesapp.Customer.CustomerViewModel
 import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.CartFragmentBinding
 import com.example.salesapp.databinding.ToolbarMainLayoutBinding
+
 class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.OnItemCheckedCallback {
 
     private lateinit var binding: CartFragmentBinding
     private lateinit var toolBarBinding: ToolbarMainLayoutBinding
-    private var numCheckedItems: Int = 0
-
-
+    private lateinit var customerSpinner: Spinner
+    private lateinit var customerViewModel: CustomerViewModel
     private lateinit var cartViewModel: CartViewModel
     private lateinit var sharedViewModel: SharedViewModel
-    private val cartAdapter: CartAdapter by lazy {
-        CartAdapter(
-            cartViewModel,
-            sharedViewModel,
-            requireContext()
-        )
-    }
+    private lateinit var cartAdapter: CartAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,14 +34,46 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
     ): View {
         binding = CartFragmentBinding.inflate(inflater, container, false)
         toolBarBinding = ToolbarMainLayoutBinding.bind(binding.root.findViewById(R.id.mainToolbar))
-        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
-        sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
-
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+        customerViewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
+        customerSpinner = binding.customerSpinner
+        cartAdapter = CartAdapter(cartViewModel, sharedViewModel, requireContext())
 
         setupRecyclerViews()
         observeCartList()
 
         cartViewModel.fetchCartItems()
+
+        customerViewModel.fetchCustomers()
+        customerViewModel.customerNamesList.observe(viewLifecycleOwner) { listName ->
+            val adapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listName)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            customerSpinner.adapter = adapter
+
+            customerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    updateOrderButtonText()
+                    updateOrderButtonState()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+        }
+
+        binding.selectAllButton.setOnClickListener {
+            val isChecked = cartAdapter.getSelectedItems().isEmpty()
+            cartAdapter.setAllItemsChecked(isChecked)
+            updateOrderButtonText()
+            updateOrderButtonState()
+        }
 
         binding.cancelButton.setOnClickListener {
             cartViewModel.cancelSelection()
@@ -72,12 +102,6 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
             findNavController().navigate(R.id.homePageFragment)
         }
 
-        binding.selectAllCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            cartAdapter.setAllItemsChecked(isChecked)
-            cartViewModel.updateTotalPrice()
-            updateOrderButtonText()
-        }
-
         val removeAllCartBtn = binding.removeAllBtn
         removeAllCartBtn.setOnClickListener {
             val request = RemoveAllCartRequest(sales_username = sharedViewModel.salesUsername)
@@ -88,7 +112,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         orderBtn.setOnClickListener {
             val selectedItems = cartAdapter.getSelectedItems()
             val productIds = selectedItems.map { it.id }
-            var custUsername = binding.customerNameEt.text.toString()
+            val custUsername = binding.customerSpinner.selectedItem.toString()
 
             val request = AddOrderRequest(
                 sales_username = sharedViewModel.salesUsername,
@@ -106,22 +130,23 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
             )
 
             cartViewModel.addOrder(request, updateCartRequest)
-            custUsername = ""
         }
 
-
-
         updateOrderButtonText()
+        updateOrderButtonState()
+
         return binding.root
     }
-
-
 
     override fun onRemoveCartClicked(salesUsername: String, product_id: Int) {
         val cart = RemoveCartRequest(salesUsername, product_id)
         cartViewModel.removeCart(cart)
     }
 
+    override fun onItemChecked(item: GetCartResponse, isChecked: Boolean) {
+        updateOrderButtonText()
+        updateOrderButtonState()
+    }
 
     private fun setupRecyclerViews() {
         binding.rvCart.apply {
@@ -138,12 +163,10 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         cartViewModel.cartList.observe(viewLifecycleOwner) { cartList ->
             cartList?.let {
                 cartAdapter.setCartProducts(it)
-                for (item in it) {
-                    item.isChecked = false
-                }
                 cartAdapter.notifyDataSetChanged()
                 cartViewModel.updateTotalPrice()
                 updateOrderButtonText()
+                updateOrderButtonState()
             }
         }
     }
@@ -158,9 +181,11 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         binding.orderButton.text = orderButtonText
     }
 
-    override fun onItemChecked(item: GetCartResponse, isChecked: Boolean) {
-        updateOrderButtonText()
+    private fun updateOrderButtonState() {
+        val selectedCount = cartAdapter.getSelectedItems().size
+        val selectedCustomer = binding.customerSpinner.selectedItem?.toString()
+        val isCustomerSelected = selectedCustomer != "Select a Customer"
+        val isAnyItemChecked = selectedCount > 0
+        binding.orderButton.isEnabled = isCustomerSelected && isAnyItemChecked
     }
-
-
 }

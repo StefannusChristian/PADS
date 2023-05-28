@@ -39,7 +39,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun fetchPromos() {
-        RetrofitClient.promo_instance.getAllPromos().enqueue(object : Callback<ArrayList<ProductResponse>> {
+        RetrofitClient.promo_instance.getAllAvailablePromos().enqueue(object : Callback<ArrayList<ProductResponse>> {
             override fun onResponse(
                 call: Call<ArrayList<ProductResponse>>,
                 response: Response<ArrayList<ProductResponse>>

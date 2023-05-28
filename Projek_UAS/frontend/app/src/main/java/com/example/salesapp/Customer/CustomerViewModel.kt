@@ -14,6 +14,11 @@ class CustomerViewModel: ViewModel() {
     private val _customers = MutableLiveData<ArrayList<GetCustomerResponse>?>()
     val customers: MutableLiveData<ArrayList<GetCustomerResponse>?> get() = _customers
     val salesUsername: String = "salesA"
+    var customerNamesList: MutableLiveData<List<String>> = MutableLiveData()
+
+     init {
+         customerNamesList.value = mutableListOf<String>("Select a Customer")
+     }
 
     fun fetchCustomers() {
         RetrofitClient.customers_instance.getCustomers(salesUsername).enqueue(object : Callback<ArrayList<GetCustomerResponse>> {
@@ -22,8 +27,16 @@ class CustomerViewModel: ViewModel() {
                 response: Response<ArrayList<GetCustomerResponse>>
             ) {
                 if (response.isSuccessful) {
+                    Log.d("CustomerFragment","Fetch Customer Berhasil!")
                     val customerList = response.body()
                     _customers.value = customerList
+                    val customerNameList = mutableListOf<String>("Select a Customer")
+                    if (customerList != null) {
+                        for (customer in customerList) {
+                            customerNameList.add(customer.name)
+                        }
+                        customerNamesList.value = customerNameList
+                    }
                 }
             }
 
@@ -37,6 +50,7 @@ class CustomerViewModel: ViewModel() {
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
+                        Log.d("CustomerFragment","Add Customer Berhasil!")
                         fetchCustomers()
                     }
                 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SignUp.SignUpFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,34 +27,39 @@
 
 
         <EditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="username">
+            android:hint="username">
         </EditText>
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="email">
+            android:hint="password">
         </EditText>
 
         <EditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="password">
+            android:hint="name">
         </EditText>
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="confirm password">
+            android:hint="email">
         </EditText>
 
         <Button
+            android:id="@+id/tryregis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -82,12 +87,15 @@
             android:text="Already have an account?"
             />
 
-        <TextView
+        <Button
+            android:id="@+id/gotosignin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12dp"
             android:textStyle="bold"
             android:text="Sign in"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/black"
             />
 
     </LinearLayout>

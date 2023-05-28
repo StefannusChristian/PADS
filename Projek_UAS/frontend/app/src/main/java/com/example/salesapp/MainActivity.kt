@@ -41,6 +41,14 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.customerFragment)
                     true
                 }
+                R.id.transactionFragmentItem ->{
+                    navController.navigate(R.id.transactionFragment)
+                    true
+                }
+                R.id.inventoryFragmentItem ->{
+                    navController.navigate(R.id.inventoryFragment)
+                    true
+                }
                 else -> false
             }
         }

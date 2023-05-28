@@ -5,4 +5,7 @@
     <string name="order_button_text">Order (%1$d)</string>
     <string name="order_button_default_text">Order</string>
     <string name="product_id">Product ID: %s</string>
+    <string name="avail_qty">Available Qty: %s</string>
+    <string name="ordered_qty">Ordered Qty: %s</string>
+    <string name="total_qty">Total Qty: %s</string>
 </resources>

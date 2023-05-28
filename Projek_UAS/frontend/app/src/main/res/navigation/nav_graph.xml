@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homePageFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homePageFragment"
@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_customerFragment"
             app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_transactionFragment"
+            app:destination="@id/transactionFragment" />
     </fragment>
 
     <fragment
@@ -60,6 +63,36 @@
         android:label="CustomerFragment" >
         <action
             android:id="@+id/action_customerFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.salesapp.SignUp.SignUpFragment"
+        tools:layout="@layout/sign_up_fragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.salesapp.Login.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.example.salesapp.Transaction.TransactionFragment"
+        android:label="transaction_fragment"
+        tools:layout="@layout/transaction_fragment" >
+        <action
+            android:id="@+id/action_transactionFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
 

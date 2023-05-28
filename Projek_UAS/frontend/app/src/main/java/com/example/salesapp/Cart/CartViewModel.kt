@@ -146,4 +146,5 @@ class CartViewModel : ViewModel() {
     private fun getSelectedItems(): List<GetCartResponse> {
         return cartList.value?.filter { it.isChecked } ?: emptyList()
     }
+
 }

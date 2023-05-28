@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/borderlineView"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Settings Button -->
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:text="..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/borderlineView"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- Borderline -->
+    <View
+        android:id="@+id/borderlineView"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Customer Name -->
+    <TextView
+        android:id="@+id/customerNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customer Name"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/borderlineView"
+        android:layout_marginTop="8dp" />
+
+    <!-- Total Quantity -->
+    <TextView
+        android:id="@+id/totalQuantityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Quantity"
+        android:textSize="16sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customerNameTextView"
+        android:layout_marginTop="4dp" />
+
+    <!-- Total Price -->
+    <TextView
+        android:id="@+id/totalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Price"
+        android:textSize="16sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalQuantityTextView"
+        android:layout_marginTop="4dp" />
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Status"
+        android:textColor="#FF0000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/totalPriceTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toEndOf="@+id/totalPriceTextView"
+        app:layout_constraintTop_toTopOf="@+id/totalPriceTextView" />
+
+    <View
+        android:id="@+id/newline"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/totalPriceTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
