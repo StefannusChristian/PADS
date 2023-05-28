@@ -34,17 +34,6 @@ android {
         viewBinding true
         dataBinding true
     }
-    sourceSets {
-        main {
-            res {
-                srcDirs 'src\\main\\res',
-                        'src\\main\\layouts\\home',
-                        'src\\main\\res\\layouts\\home',
-                        'src\\main\\res\\layouts\\cart',
-                        'src\\main\\res\\layouts\\customer'
-            }
-        }
-    }
 
 }
 

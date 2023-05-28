@@ -21,4 +21,13 @@ class LoginViewModel: ViewModel() {
             }
         }
     }
+
+    fun logout(salesUsername : String){
+        viewModelScope.launch {
+            val response = RetrofitClient.login_signup_instance.postLogout(LogOutRequest(salesUsername))
+            if (response.isSuccessful){
+            }
+        }
+    }
+
 }

@@ -2,18 +2,22 @@ package com.example.salesapp.Customer
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesapp.PatchCustomerRequest
 import com.example.salesapp.PostCustomerRequest
 import com.example.salesapp.R
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.CustomerAddCustPopupBinding
 import com.example.salesapp.databinding.CustomerFragmentBinding
 import com.example.salesapp.databinding.ToolbarMainLayoutBinding
@@ -24,8 +28,9 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
     private lateinit var customerViewModel: CustomerViewModel
     private lateinit var toolBarBinding: ToolbarMainLayoutBinding
     private lateinit var addCustomerBinding: CustomerAddCustPopupBinding
-    private val customerAdapter: CustomerAdapter by lazy { CustomerAdapter(customerViewModel) }
-    private val customerTag = "CustomerFragment"
+    val sharedViewModel: SharedViewModel by activityViewModels()
+    private val customerAdapter: CustomerAdapter by lazy { CustomerAdapter(sharedViewModel) }
+    private lateinit var sortSpinner: Spinner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +45,33 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
 
         customerAdapter.setOnItemClickCallback(this)
 
-        customerViewModel.fetchCustomers()
+        customerViewModel.fetchCustomers(sharedViewModel.salesUsername)
 
-        val sortBtn = binding.customerSortbtn
-        sortBtn.setOnClickListener {
-            showSortDialog()
+        sortSpinner = binding.customerSortSpinner
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.customer_sort_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            sortSpinner.adapter = adapter
+        }
+
+        sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+                if (selectedItem != "Sort By"){
+                    customerViewModel.sortCustomerList(selectedItem)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
         }
 
         toolBarBinding.toolbarBtn.setOnClickListener {
@@ -53,15 +80,14 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
 
         val addCustomerBtn = binding.addCustomerBtn
         addCustomerBtn.setOnClickListener {
-            Log.d(customerTag, "Button Di Pencet!")
             showAddDialog()
         }
 
         return binding.root
     }
 
-    override fun onUnsubscribeClicked(salesUsername: String, customerName: String) {
-        customerViewModel.unsubscribeCustomer(PatchCustomerRequest(salesUsername, customerName))
+    override fun onUnsubscribeClicked(sales_username: String, customer_name: String) {
+        customerViewModel.unsubscribeCustomer(PatchCustomerRequest(sales_username, customer_name),sales_username)
     }
 
     private fun showSortDialog() {
@@ -89,14 +115,12 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
             val address = addCustomerBinding.customerAddress.text.toString()
             val imageLink = addCustomerBinding.customerImageLink.text.toString()
             val newCustomer = PostCustomerRequest(
-                sales_username = customerViewModel.salesUsername,
+                sales_username = sharedViewModel.salesUsername,
                 customer_username = username,
                 customer_address = address,
                 customer_img_link = imageLink
             )
-            Log.d(customerTag, newCustomer.toString())
-            customerViewModel.addCustomer(newCustomer)
-            Log.d(customerTag, "ADD BUTTON DIPENCET!")
+            customerViewModel.addCustomer(newCustomer, sharedViewModel.salesUsername)
             dialog.dismiss()
         }
 

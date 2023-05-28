@@ -1,6 +1,7 @@
 package com.example.salesapp.Home
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.salesapp.AddToCartRequest
@@ -14,12 +15,17 @@ class HomeViewModel : ViewModel() {
 
     private val _products = MutableLiveData<ArrayList<ProductResponse>?>()
     private val _promos = MutableLiveData<ArrayList<ProductResponse>?>()
+    private val _salesInfo = MutableLiveData<ArrayList<GetSalesResponse>?>()
+
+    private val _email = MutableLiveData<String>()
+    private val _name = MutableLiveData<String>()
+
+    val email: LiveData<String> get() = _email
+    val name: LiveData<String> get() = _name
 
     val products: MutableLiveData<ArrayList<ProductResponse>?> get() = _products
     val promos: MutableLiveData<ArrayList<ProductResponse>?> get() = _promos
-
-    val salesUsername: String = "salesA"
-
+    val salesInfo: MutableLiveData<ArrayList<GetSalesResponse>?> get() = _salesInfo
 
     fun fetchAvailProducts() {
         RetrofitClient.product_instance.getAllAvailableProducts().enqueue(object : Callback<ArrayList<ProductResponse>> {
@@ -74,6 +80,28 @@ class HomeViewModel : ViewModel() {
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     Log.d("HomeFragment", "Add To Cart Gagal!")
+                }
+            })
+    }
+
+    fun fetchSales(sales_username: String) {
+        RetrofitClient.sales_instance.getSales(sales_username)
+            .enqueue(object : Callback<GetSalesResponse> {
+                override fun onResponse(
+                    call: Call<GetSalesResponse>,
+                    response: Response<GetSalesResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val sales = response.body()
+                        if (sales != null) {
+                            _email.value = sales.email
+                            _name.value = sales.name
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<GetSalesResponse>, t: Throwable) {
+                    Log.e("HomeViewModel", "Failed to fetch sales info: ${t.message}")
                 }
             })
     }

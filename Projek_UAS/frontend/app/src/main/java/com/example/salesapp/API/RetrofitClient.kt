@@ -20,5 +20,6 @@ object RetrofitClient {
     val customers_instance: customersAPI by lazy { retrofit.create(customersAPI::class.java) }
     val login_signup_instance: loginRegisterAPI by lazy { retrofit.create(loginRegisterAPI::class.java)}
     val transaction_instance: transactionAPI by lazy { retrofit.create(transactionAPI::class.java)}
+    val sales_instance: salesAPI by lazy { retrofit.create(salesAPI::class.java)}
 
 }

@@ -7,26 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
 import com.example.salesapp.R
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.ToolbarMainLayoutBinding
 import com.example.salesapp.databinding.TransactionFragmentBinding
 
 class TransactionFragment: Fragment() {
     private lateinit var binding: TransactionFragmentBinding
     private lateinit var transactionAdapter: TransactionAdapter
-    private val viewModel: TransactionViewModel by viewModels()
+    private val transactionViewModel: TransactionViewModel by viewModels()
     private lateinit var toolBarBinding: ToolbarMainLayoutBinding
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d("TransactionFragment", "MASUK ON CREATE VIEW!")
         binding = TransactionFragmentBinding.inflate(layoutInflater)
         toolBarBinding = ToolbarMainLayoutBinding.bind(binding.root.findViewById(R.id.mainToolbar))
 
@@ -40,23 +41,17 @@ class TransactionFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("TransactionFragment", "MASUK ON VIEW CREATED!")
-
         setupRecyclerView()
-        Log.d("TransactionFragment", "INI DIBAWAH SETUP RECYCLER VIEW!")
 
-        viewModel.orderList.observe(viewLifecycleOwner, Observer { orders ->
+        transactionViewModel.orderList.observe(viewLifecycleOwner, Observer { orders ->
             transactionAdapter.orderList = orders
         })
 
         fetchOrder()
-        Log.d("TransactionFragment", "INI DIBAWAH SETUP ORDER!")
 
     }
 
-
     private fun setupRecyclerView() {
-        Log.d("TransactionFragment", "MASUK SETUP RECYCLER VIEW")
         transactionAdapter = TransactionAdapter()
         binding.recyclerView.adapter = transactionAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
@@ -79,8 +74,7 @@ class TransactionFragment: Fragment() {
     }
 
     private fun fetchOrder(){
-        Log.d("TransactionFragment", "MASUK FETCH ORDER")
-        viewModel.fetchOrder()
+        transactionViewModel.fetchOrder(sharedViewModel.salesUsername)
     }
 
     private fun showConfirmationDialog(position: Int) {
@@ -91,8 +85,7 @@ class TransactionFragment: Fragment() {
                 .setMessage("Are you sure you want to change the status to 'canceled'?")
                 .setPositiveButton("Yes") { dialog, _ ->
                     changeOrderStatus(position)
-                    Log.d("Transaction Fragment", "Pop Up")
-                    viewModel.cancelOrder("salesA", transactionAdapter.orderList[position].id)
+                    transactionViewModel.cancelOrder(sharedViewModel.salesUsername, transactionAdapter.orderList[position].id)
                     dialog.dismiss()
                 }
                 .setNegativeButton("No") { dialog, _ ->
@@ -104,8 +97,7 @@ class TransactionFragment: Fragment() {
     }
 
     private fun changeOrderStatus(position: Int) {
-        viewModel.changeOrderStatus(position)
-
+        transactionViewModel.changeOrderStatus(position)
         transactionAdapter.notifyItemChanged(position)
     }
 

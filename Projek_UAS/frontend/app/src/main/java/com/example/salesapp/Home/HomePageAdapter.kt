@@ -10,10 +10,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.HomeRvListItemBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 
-class HomePageAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
+class HomePageAdapter(private val sharedViewModel: SharedViewModel) : RecyclerView.Adapter<HomePageAdapter.HomeViewHolder>() {
 
     private lateinit var popupBinding: HomeProductPopupBinding
     private val productResponseList = mutableListOf<ProductResponse>()
@@ -44,7 +45,7 @@ class HomePageAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.A
                     val product = productResponseList[position]
                     val qty = qtyEditText.text.toString().toIntOrNull() ?: 0
                     onItemClickCallback?.onAddToCartClicked(
-                        homeViewModel.salesUsername,product.id,qty
+                        sharedViewModel.salesUsername,product.id,qty
                     )
                 }
             }

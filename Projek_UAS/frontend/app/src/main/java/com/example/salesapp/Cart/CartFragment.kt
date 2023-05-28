@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
     private lateinit var customerSpinner: Spinner
     private lateinit var customerViewModel: CustomerViewModel
     private lateinit var cartViewModel: CartViewModel
-    private lateinit var sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var cartAdapter: CartAdapter
 
     override fun onCreateView(
@@ -35,7 +36,6 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         binding = CartFragmentBinding.inflate(inflater, container, false)
         toolBarBinding = ToolbarMainLayoutBinding.bind(binding.root.findViewById(R.id.mainToolbar))
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
-        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
         customerViewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
         customerSpinner = binding.customerSpinner
         cartAdapter = CartAdapter(cartViewModel, sharedViewModel, requireContext())
@@ -45,7 +45,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
 
         cartViewModel.fetchCartItems()
 
-        customerViewModel.fetchCustomers()
+        customerViewModel.fetchCustomers(sharedViewModel.salesUsername)
         customerViewModel.customerNamesList.observe(viewLifecycleOwner) { listName ->
             val adapter =
                 ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listName)

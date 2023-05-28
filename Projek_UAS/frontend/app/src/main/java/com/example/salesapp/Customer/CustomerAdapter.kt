@@ -12,11 +12,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.salesapp.GetCustomerResponse
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.CustomerRvListItemBinding
 
-class CustomerAdapter(private val customerViewModel: CustomerViewModel) : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
+class CustomerAdapter(private val sharedViewModel: SharedViewModel) : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
     var customerList = mutableListOf<GetCustomerResponse>()
+    val salesUsername = sharedViewModel.salesUsername
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -42,7 +44,7 @@ class CustomerAdapter(private val customerViewModel: CustomerViewModel) : Recycl
                 if (position != RecyclerView.NO_POSITION) {
                     val customer = customerList[position]
                     onItemClickCallback?.onUnsubscribeClicked(
-                        customerViewModel.salesUsername,
+                        salesUsername,
                         customer.name
                     )
                 }

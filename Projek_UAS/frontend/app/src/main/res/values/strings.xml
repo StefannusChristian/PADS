@@ -8,4 +8,14 @@
     <string name="avail_qty">Available Qty: %s</string>
     <string name="ordered_qty">Ordered Qty: %s</string>
     <string name="total_qty">Total Qty: %s</string>
+    <string-array name="customer_sort_options">
+        <item>Sort By</item>
+        <item>Sort By Name</item>
+        <item>Sort By Address</item>
+    </string-array>
+    <string-array name="inventory_sort_options">
+        <item>Sort By</item>
+        <item>Sort By Name</item>
+        <item>Sort By Address</item>
+    </string-array>
 </resources>

@@ -11,18 +11,17 @@ import com.example.salesapp.Home.ProductResponse
 import com.example.salesapp.R
 import com.example.salesapp.databinding.InventoryRvListItemBinding
 
-class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.MyViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
         val binding = InventoryRvListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return MyViewHolder(binding)
+        return InventoryViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return prodList.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
         val currentItem = prodList[position]
         val context = holder.itemView.context
         holder.nameprod.text = currentItem.name
@@ -35,8 +34,7 @@ class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.MyViewHolder>(){
             .into(holder.binding.titleImage)
     }
 
-
-    class MyViewHolder(val binding: InventoryRvListItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class InventoryViewHolder(val binding: InventoryRvListItemBinding) : RecyclerView.ViewHolder(binding.root){
         val nameprod : TextView = binding.namaprod
         val availqty : TextView = binding.availqty
         val orderqty : TextView = binding.orderqty
@@ -52,6 +50,7 @@ class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.MyViewHolder>(){
             return oldItem == newItem
         }
     }
+
     private val differ = AsyncListDiffer(this, diffCallback)
     var prodList: List<ProductResponse>
         get() = differ.currentList

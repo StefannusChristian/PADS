@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.salesapp.Home.HomeViewModel
 import com.example.salesapp.Home.ProductResponse
 import com.example.salesapp.R
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.PromoFragmentBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
 import com.example.salesapp.databinding.ToolbarMainLayoutBinding

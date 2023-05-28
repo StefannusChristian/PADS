@@ -4,12 +4,15 @@ import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,15 +20,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.salesapp.AddToCartRequest
 import com.example.salesapp.R
+import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.HomeFragmentBinding
 import com.example.salesapp.databinding.HomeProductPopupBinding
+import com.example.salesapp.databinding.ToolbarHomeLayoutBinding
 
 class HomePageFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
     private lateinit var homeViewModel: HomeViewModel
-    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(homeViewModel) }
+    private lateinit var toolBarBinding: ToolbarHomeLayoutBinding
+    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(sharedViewModel) }
     private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +40,7 @@ class HomePageFragment : Fragment() {
     ): View {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        toolBarBinding = ToolbarHomeLayoutBinding.bind(binding.root.findViewById(R.id.homeToolbar))
 
         setupRecyclerViews()
 
@@ -51,6 +59,17 @@ class HomePageFragment : Fragment() {
                 showProductDetailDialog(data)
             }
         })
+
+        Log.d("HomeViewModel",sharedViewModel.salesUsername)
+        homeViewModel.fetchSales(sharedViewModel.salesUsername)
+
+        homeViewModel.email.observe(viewLifecycleOwner) { email ->
+            toolBarBinding.salesEmail.text = email
+        }
+
+        homeViewModel.name.observe(viewLifecycleOwner) { name ->
+            toolBarBinding.salesName.text = name
+        }
 
         observeProductList()
         observePromosList()
@@ -79,6 +98,7 @@ class HomePageFragment : Fragment() {
             adapter = homePromoAdapter
         }
     }
+
 
     private fun observeProductList() {
         homeViewModel.products.observe(viewLifecycleOwner) { productList ->

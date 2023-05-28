@@ -1,7 +1,9 @@
 package com.example.salesapp.API
 
 import com.example.salesapp.*
+import com.example.salesapp.Home.GetSalesResponse
 import com.example.salesapp.Home.ProductResponse
+import com.example.salesapp.Login.LogOutRequest
 import com.example.salesapp.Login.LoginItem
 import com.example.salesapp.Login.LoginResponse
 import com.example.salesapp.SignUp.SignupItem
@@ -71,16 +73,27 @@ interface loginRegisterAPI{
     suspend fun postSignUp(
         @Body regis_info : SignupItem
     ):Response<ApiResponse>
+
+    @POST("logout")
+    suspend fun postLogout(
+        @Body logOutRequest: LogOutRequest
+    ): Response<ApiResponse>
+
 }
 
 interface transactionAPI{
-    @GET("getorders/salesA")
-    suspend fun getOrder(): Response<List<OrderItem>>
+    @GET("getorders/{sales_username}")
+    suspend fun getOrder(@Path("sales_username")sales_username: String): Response<List<OrderItem>>
 
     @PATCH("cancelorder")
     suspend fun patchOrder(
         @Body item: PatchcancelorderRequest
     ):Response<ApiResponse>
+}
+
+interface salesAPI {
+    @GET("getsales/{sales_username}")
+    fun getSales(@Path("sales_username")sales_username: String): Call<GetSalesResponse>
 }
 
 

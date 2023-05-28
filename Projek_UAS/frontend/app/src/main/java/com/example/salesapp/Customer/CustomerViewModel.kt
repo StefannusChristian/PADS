@@ -13,14 +13,13 @@ class CustomerViewModel: ViewModel() {
 
     private val _customers = MutableLiveData<ArrayList<GetCustomerResponse>?>()
     val customers: MutableLiveData<ArrayList<GetCustomerResponse>?> get() = _customers
-    val salesUsername: String = "salesA"
     var customerNamesList: MutableLiveData<List<String>> = MutableLiveData()
 
      init {
          customerNamesList.value = mutableListOf<String>("Select a Customer")
      }
 
-    fun fetchCustomers() {
+    fun fetchCustomers(salesUsername: String) {
         RetrofitClient.customers_instance.getCustomers(salesUsername).enqueue(object : Callback<ArrayList<GetCustomerResponse>> {
             override fun onResponse(
                 call: Call<ArrayList<GetCustomerResponse>>,
@@ -45,13 +44,13 @@ class CustomerViewModel: ViewModel() {
         })
     }
 
-    fun addCustomer(customer: PostCustomerRequest) {
+    fun addCustomer(customer: PostCustomerRequest, salesUsername: String) {
         RetrofitClient.customers_instance.createCustomer(customer)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("CustomerFragment","Add Customer Berhasil!")
-                        fetchCustomers()
+                        fetchCustomers(salesUsername)
                     }
                 }
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
@@ -59,20 +58,17 @@ class CustomerViewModel: ViewModel() {
             })
     }
 
-    fun unsubscribeCustomer(customer: PatchCustomerRequest) {
+    fun unsubscribeCustomer(customer: PatchCustomerRequest, salesUsername: String) {
         RetrofitClient.customers_instance.unsubscribeCustomer(customer)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
-                        Log.d("CustomerFragment","Berhasil keapus!")
-                        fetchCustomers()
+                        fetchCustomers(salesUsername)
                     } else {
-                        Log.d("CustomerFragment","Gagal keapus!")
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    Log.d("customerFragment","Gagal keapus!")
                 }
             })
     }
@@ -90,6 +86,14 @@ class CustomerViewModel: ViewModel() {
         }
         customers.value = sortedList as ArrayList<GetCustomerResponse>?
     }
+
+    fun sortCustomerList(sortOption: String) {
+        when (sortOption) {
+            "Sort By Name" -> sortCustomersByName()
+            "Sort By Address" -> sortCustomersByAddress()
+        }
+    }
+
 
 
 

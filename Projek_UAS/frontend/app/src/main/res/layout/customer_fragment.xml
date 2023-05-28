@@ -12,30 +12,32 @@
         android:id="@+id/mainToolbar"
         android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/customerSortbtn"
+    <Spinner
+        android:id="@+id/customerSortSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_below="@id/mainToolbar"
-        android:text="Sort"
-        >
-    </Button>
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/customerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/customerSortSpinner"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/customerSortbtn"
-        android:text="INI CUSTOMER FRAGMENT!"
+        android:text="CUSTOMERS"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_customer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView" />
+        android:layout_below="@id/customerTitle"
+        android:layout_above="@+id/addCustomerBtn" />
 
     <Button
         android:id="@+id/addCustomerBtn"
@@ -47,7 +49,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp" />
-
-
 
 </RelativeLayout>
