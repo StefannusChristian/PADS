@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -26,10 +27,9 @@ import java.io.IOException
 class InventoryFragment : Fragment() {
 
     private lateinit var binding: InventoryFragmentBinding
-    private lateinit var newRecyclerview : RecyclerView
-    private lateinit var newArrayList : ArrayList<ProductResponse>
     private lateinit var inventoryAdapter: InventoryAdapter
     private lateinit var toolBarBinding: ToolbarMainLayoutBinding
+    private val viewModel: InventoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,12 +47,21 @@ class InventoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        fetchTodoData()
+        viewModel.fetchInventoryData()
 
         binding.sortButton.setOnClickListener {
             showSortDialog()
         }
 
+        viewModel.inventory.observe(viewLifecycleOwner) { inventory ->
+            inventory?.let {
+                inventoryAdapter.prodList = it
+            }
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.isVisible = isLoading
+        }
     }
 
     private fun showSortDialog() {
@@ -62,40 +71,14 @@ class InventoryFragment : Fragment() {
         builder.setTitle("Sort By")
             .setItems(options) { dialog, which ->
                 when (which) {
-                    0 -> sortByAvailable()
-                    1 -> sortByTotal()
-                    2 -> sortByOrdered()
+                    0 -> viewModel.sortByAvailable()
+                    1 -> viewModel.sortByTotal()
+                    2 -> viewModel.sortByOrdered()
                 }
             }
             .show()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun sortByAvailable() {
-        val sortedList = inventoryAdapter.prodList.toMutableList().apply {
-            sortByDescending { it.available_qty }
-        }
-        inventoryAdapter.prodList = sortedList
-        inventoryAdapter.notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun sortByTotal() {
-        val sortedList = inventoryAdapter.prodList.toMutableList().apply {
-            sortByDescending { it.total_qty }
-        }
-        inventoryAdapter.prodList = sortedList
-        inventoryAdapter.notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun sortByOrdered() {
-        val sortedList = inventoryAdapter.prodList.toMutableList().apply {
-            sortByDescending { it.ordered_qty }
-        }
-        inventoryAdapter.prodList = sortedList
-        inventoryAdapter.notifyDataSetChanged()
-    }
 
     private fun setupRecyclerView() = binding.recyclerView.apply {
         inventoryAdapter = InventoryAdapter()
@@ -103,27 +86,5 @@ class InventoryFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
     }
 
-    private fun fetchTodoData() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            binding.progressBar.isVisible = true
-            val response = try {
-                RetrofitClient.product_instance.getAllProducts()
-            } catch (e: IOException) {
-                binding.progressBar.isVisible = false
-                return@launch
-            } catch (e: HttpException) {
-                binding.progressBar.isVisible = false
-                return@launch
-            }
-
-            if (response.isSuccessful && response.body() != null) {
-                inventoryAdapter.prodList = response.body()!!
-            } else {
-                // Tambahin toast message aja
-            }
-
-            binding.progressBar.isVisible = false
-        }
-    }
 
 }

@@ -1,7 +1,8 @@
 package com.example.salesapp.Login
 
 import android.os.Bundle
-import android.util.Log
+import android.text.InputFilter
+import android.text.Spanned
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,5 +50,29 @@ class LoginFragment : Fragment() {
         })
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val inputFilter = object : InputFilter {
+            override fun filter(
+                source: CharSequence,
+                start: Int,
+                end: Int,
+                dest: Spanned,
+                dstart: Int,
+                dend: Int
+            ): CharSequence {
+                // Prevent new lines from being entered
+                if (source.contains("\n")) {
+                    return ""
+                }
+                return source // Accept the input as is
+            }
+        }
+
+// Apply the input filter to the username and password fields, otak atik field mana yang mau difilter
+        binding.theUser.filters = arrayOf(inputFilter)
+        binding.thePass.filters = arrayOf(inputFilter)
     }
 }
