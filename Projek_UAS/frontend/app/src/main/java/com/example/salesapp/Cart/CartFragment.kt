@@ -43,7 +43,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         setupRecyclerViews()
         observeCartList()
 
-        cartViewModel.fetchCartItems()
+        cartViewModel.fetchCartItems(sharedViewModel.salesUsername)
 
         customerViewModel.fetchCustomers(sharedViewModel.salesUsername)
         customerViewModel.customerNamesList.observe(viewLifecycleOwner) { listName ->
@@ -97,7 +97,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
                 updated_detail_carts = updatedCarts
             )
 
-            cartViewModel.updateDetailCarts(request)
+            cartViewModel.updateDetailCarts(request, sharedViewModel.salesUsername)
 
             findNavController().navigate(R.id.homePageFragment)
         }
@@ -105,7 +105,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
         val removeAllCartBtn = binding.removeAllBtn
         removeAllCartBtn.setOnClickListener {
             val request = RemoveAllCartRequest(sales_username = sharedViewModel.salesUsername)
-            cartViewModel.removeAllCarts(request)
+            cartViewModel.removeAllCarts(request,sharedViewModel.salesUsername)
         }
 
         val orderBtn = binding.orderButton
@@ -129,7 +129,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
                 updated_detail_carts = updatedCarts
             )
 
-            cartViewModel.addOrder(request, updateCartRequest)
+            cartViewModel.addOrder(request, updateCartRequest, sharedViewModel.salesUsername)
         }
 
         updateOrderButtonText()
@@ -140,7 +140,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
 
     override fun onRemoveCartClicked(salesUsername: String, product_id: Int) {
         val cart = RemoveCartRequest(salesUsername, product_id)
-        cartViewModel.removeCart(cart)
+        cartViewModel.removeCart(cart, sharedViewModel.salesUsername)
     }
 
     override fun onItemChecked(item: GetCartResponse, isChecked: Boolean) {

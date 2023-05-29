@@ -1,5 +1,6 @@
 package com.example.salesapp.Login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,8 +25,11 @@ class LoginViewModel: ViewModel() {
 
     fun logout(salesUsername : String){
         viewModelScope.launch {
+            Log.d("HomeFragment","Masuk Sini!")
             val response = RetrofitClient.login_signup_instance.postLogout(LogOutRequest(salesUsername))
+            Log.d("HomeFragment",response.toString()+" ini response di atas isSukses")
             if (response.isSuccessful){
+                Log.d("HomeFragment",response.body().toString())
             }
         }
     }

@@ -12,13 +12,13 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.salesapp.AddToCartRequest
+import com.example.salesapp.Login.LoginViewModel
 import com.example.salesapp.R
 import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.HomeFragmentBinding
@@ -29,6 +29,7 @@ class HomePageFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var toolBarBinding: ToolbarHomeLayoutBinding
     private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(sharedViewModel) }
     private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
@@ -40,6 +41,7 @@ class HomePageFragment : Fragment() {
     ): View {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         toolBarBinding = ToolbarHomeLayoutBinding.bind(binding.root.findViewById(R.id.homeToolbar))
 
         setupRecyclerViews()
@@ -60,7 +62,6 @@ class HomePageFragment : Fragment() {
             }
         })
 
-        Log.d("HomeViewModel",sharedViewModel.salesUsername)
         homeViewModel.fetchSales(sharedViewModel.salesUsername)
 
         homeViewModel.email.observe(viewLifecycleOwner) { email ->
@@ -80,6 +81,13 @@ class HomePageFragment : Fragment() {
         val goToPromo: Button = binding.goToPromoBtn
         goToPromo.setOnClickListener {
             findNavController().navigate(R.id.action_homePageFragment_to_promoFragment)
+        }
+
+        val logoutBtn: Button = toolBarBinding.logoutButton
+        logoutBtn.setOnClickListener{
+            Log.d("HomeFragment",sharedViewModel.salesUsername)
+            loginViewModel.logout(sharedViewModel.salesUsername)
+            findNavController().navigate(R.id.action_homePageFragment_to_loginFragment)
         }
 
         return binding.root

@@ -14,8 +14,8 @@ class CartViewModel : ViewModel() {
     val totalPrice: MutableLiveData<Double> = MutableLiveData(0.0)
     val cartList: MutableLiveData<ArrayList<GetCartResponse>?> = MutableLiveData()
 
-    fun fetchCartItems() {
-        RetrofitClient.cart_instance.getDetailCarts("salesA")
+    fun fetchCartItems(salesUsername: String) {
+        RetrofitClient.cart_instance.getDetailCarts(salesUsername)
             .enqueue(object : Callback<ArrayList<GetCartResponse>> {
                 override fun onResponse(
                     call: Call<ArrayList<GetCartResponse>>,
@@ -39,13 +39,13 @@ class CartViewModel : ViewModel() {
             })
     }
 
-    fun removeCart(cart: RemoveCartRequest) {
+    fun removeCart(cart: RemoveCartRequest, salesUsername: String) {
         RetrofitClient.cart_instance.removeCartProduct(cart)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("CartFragment", "Remove Cart Berhasil!")
-                        fetchCartItems()
+                        fetchCartItems(salesUsername)
                     } else {
                         Log.d("CartFragment", "Remove Cart Gagal!")
                     }
@@ -57,13 +57,13 @@ class CartViewModel : ViewModel() {
             })
     }
 
-    fun removeAllCarts(request: RemoveAllCartRequest) {
+    fun removeAllCarts(request: RemoveAllCartRequest, salesUsername: String) {
         RetrofitClient.cart_instance.removeAllCartProduct(request)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("CartFragment", "Remove All Cart Berhasil!")
-                        fetchCartItems()
+                        fetchCartItems(salesUsername)
                     } else {
                         Log.d("CartFragment", "Remove All Cart Gagal!")
                     }
@@ -75,13 +75,13 @@ class CartViewModel : ViewModel() {
             })
     }
 
-    fun updateDetailCarts(request: UpdateDetailCartsRequest) {
+    fun updateDetailCarts(request: UpdateDetailCartsRequest, salesUsername: String) {
         RetrofitClient.cart_instance.updateDetailCarts(request)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("CartFragment", "Update Detail Carts Berhasil!")
-                        fetchCartItems()
+                        fetchCartItems(salesUsername)
                     } else {
                         Log.d("CartFragment", "Update Detail Carts Gagal!")
                     }
@@ -93,14 +93,14 @@ class CartViewModel : ViewModel() {
             })
     }
 
-    fun addOrder(request: AddOrderRequest, cart: UpdateDetailCartsRequest) {
+    fun addOrder(request: AddOrderRequest, cart: UpdateDetailCartsRequest, salesUsername: String) {
         RetrofitClient.cart_instance.addOrder(request)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("CartFragment",response.body().toString())
                         Log.d("CartFragment", "Add Order Berhasil!")
-                        updateDetailCarts(cart)
+                        updateDetailCarts(cart, salesUsername)
                     } else {
                         Log.d("CartFragment", "Add Order Gagal!")
                     }
