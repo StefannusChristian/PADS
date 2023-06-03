@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:background="#808080"
             android:padding="10dp"
-            >
+            android:baselineAligned="false">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
@@ -30,13 +30,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:text="Promo Hari Ini!">
+                            android:text="@string/promo_hari_ini">
                         </TextView>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bebas Ongkir &amp; Bebas Pilih Jadwal">
+                            android:text="@string/bebas_ongkir_amp_bebas_pilih_jadwal">
                         </TextView>
             </LinearLayout>
 
@@ -49,7 +49,7 @@
                     android:id="@+id/goToPromoBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lihat Semua"
+                    android:text="@string/lihat_semua"
                     android:textSize="10sp"
                     android:background="?android:attr/selectableItemBackground"
                     tools:ignore="SmallSp">
@@ -68,6 +68,7 @@
                 android:id="@+id/rv_home_promo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal" />
 
@@ -76,7 +77,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_home"

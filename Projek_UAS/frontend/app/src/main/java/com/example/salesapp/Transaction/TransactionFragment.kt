@@ -1,5 +1,6 @@
 package com.example.salesapp.Transaction
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ class TransactionFragment: Fragment() {
     private lateinit var toolBarBinding: ToolbarMainLayoutBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +36,8 @@ class TransactionFragment: Fragment() {
         toolBarBinding.toolbarBtn.setOnClickListener{
             findNavController().navigate(R.id.homePageFragment)
         }
+
+        toolBarBinding.toolbarHeader.text = "Transaction"
 
         return binding.root
     }

@@ -31,6 +31,7 @@ class InventoryFragment : Fragment() {
     private lateinit var toolBarBinding: ToolbarMainLayoutBinding
     private val viewModel: InventoryViewModel by viewModels()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +42,7 @@ class InventoryFragment : Fragment() {
         toolBarBinding.toolbarBtn.setOnClickListener{
             findNavController().navigate(R.id.homePageFragment)
         }
+        toolBarBinding.toolbarHeader.text = "Inventory"
         return binding.root
     }
 
@@ -62,7 +64,10 @@ class InventoryFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.isVisible = isLoading
         }
+
+
     }
+
 
     private fun showSortDialog() {
         val options = arrayOf("Available", "Total", "Ordered")

@@ -8,6 +8,33 @@
     <string name="avail_qty">Available Qty: %s</string>
     <string name="ordered_qty">Ordered Qty: %s</string>
     <string name="total_qty">Total Qty: %s</string>
+    <string name="bebas_ongkir_amp_bebas_pilih_jadwal"><![CDATA[Bebas Ongkir & Bebas Pilih Jadwal]]></string>
+    <string name="promo_hari_ini">Promo Hari Ini!</string>
+    <string name="lt"><![CDATA[<]]></string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="please_sign_in_to_continue">Please sign in to continue</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logo">Logo</string>
+    <string name="sales_sje">Sales SJE</string>
+    <string name="lihat_semua">Lihat Semua</string>
+    <string name="anggota_kelompok_1">Anggota Kelompok 1</string>
+    <string name="jason_caleb">Jason Caleb</string>
+    <string name="nim_202001240">NIM: 202001240</string>
+    <string name="job_description">Job Description:</string>
+    <string name="anggota_kelompok_2">Anggota Kelompok 2</string>
+    <string name="nim_202000138">NIM: 202000138</string>
+    <string name="evan_christopher">Evan Christopher</string>
+    <string name="stefannus_christian">Stefannus Christian</string>
+    <string name="nim_202000187">NIM: 202000187</string>
+    <string name="group">Group</string>
+    <string name="customers">Customers</string>
+    <string name="inventory">Inventory</string>
+    <string name="cart">Cart</string>
+    <string name="transaction">Transaction</string>
+    <string name="home">Home</string>
     <string-array name="customer_sort_options">
         <item>Sort By</item>
         <item>Sort By Name</item>

@@ -29,6 +29,7 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var cartAdapter: CartAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -101,6 +102,9 @@ class CartFragment : Fragment(), CartAdapter.OnItemClickCallback, CartAdapter.On
 
             findNavController().navigate(R.id.homePageFragment)
         }
+
+        toolBarBinding.toolbarHeader.text = "Cart"
+
 
         val removeAllCartBtn = binding.removeAllBtn
         removeAllCartBtn.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.example.salesapp.Customer
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -32,6 +33,7 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
     private val customerAdapter: CustomerAdapter by lazy { CustomerAdapter(sharedViewModel) }
     private lateinit var sortSpinner: Spinner
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,6 +79,8 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
         toolBarBinding.toolbarBtn.setOnClickListener {
             findNavController().navigate(R.id.homePageFragment)
         }
+
+        toolBarBinding.toolbarHeader.text = "Customers List"
 
         val addCustomerBtn = binding.addCustomerBtn
         addCustomerBtn.setOnClickListener {

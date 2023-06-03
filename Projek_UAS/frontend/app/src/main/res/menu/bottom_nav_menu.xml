@@ -2,28 +2,35 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/transactionFragmentItem"
-        android:title="Transaction"
-        android:icon="@drawable/baseline_attach_money_24"
-        />
 
     <item
         android:id="@+id/cartFragmentItem"
-        android:title="Cart"
+        android:title="@string/cart"
         android:icon="@drawable/baseline_shopping_cart_24"
         />
 
     <item
+        android:id="@+id/transactionFragmentItem"
+        android:title="@string/transaction"
+        android:icon="@drawable/baseline_attach_money_24"
+        />
+
+    <item
         android:id="@+id/inventoryFragmentItem"
-        android:title="Inventory"
+        android:title="@string/inventory"
         android:icon="@drawable/baseline_warehouse_24"
         />
 
     <item
         android:id="@+id/customersFragmentItem"
-        android:title="Customers"
+        android:title="@string/customers"
         android:icon="@drawable/baseline_people_24"
+        />
+
+    <item
+        android:id="@+id/groupFragmentItem"
+        android:title="@string/group"
+        android:icon="@drawable/baseline_groups_3_24"
         />
 
 </menu>

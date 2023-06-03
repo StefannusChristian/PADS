@@ -168,7 +168,7 @@ class HomePageFragment : Fragment() {
         addToCartBtn.setOnClickListener {
             val qty: Int = dialogBinding.addToCartQty.text.toString().toIntOrNull() ?: 0
             val productToAdd =
-                AddToCartRequest(sales_username = "salesA", product_id = productResponse.id, qty = qty)
+                AddToCartRequest(sales_username = sharedViewModel.salesUsername, product_id = productResponse.id, qty = qty)
             homeViewModel.addToCart(productToAdd)
             dialog.dismiss()
         }

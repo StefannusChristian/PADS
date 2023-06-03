@@ -5,19 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/mainToolbar"
-    android:background="#8294C4">
+    android:background="@color/primary_green">
 
     <TextView
         android:id="@+id/toolbarHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Fragment Name"
         android:textSize="20sp"
+        android:layout_marginLeft="20dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/toolbarBtn"
-        app:layout_constraintStart_toEndOf="@+id/toolbarBtn"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/toolbarBtn" />
 
     <Button
         android:id="@+id/toolbarBtn"
@@ -25,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="?android:attr/selectableItemBackground"
-        android:text="&lt;"
+        android:text="@string/lt"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

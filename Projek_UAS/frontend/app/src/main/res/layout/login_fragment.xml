@@ -21,17 +21,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textSize="27dp"
+            android:textSize="40sp"
             android:textStyle="bold"
-            android:text="Login">
+            android:text="@string/login">
         </TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textSize="12dp"
-            android:text="Please sign in to continue">
+            android:layout_marginBottom="10dp"
+            android:textSize="24sp"
+            android:text="@string/please_sign_in_to_continue">
         </TextView>
 
         <EditText
@@ -39,7 +40,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:hint="username">
+            android:inputType="text"
+            android:textSize="20sp"
+            android:hint="@string/username"
+            android:autofillHints="username">
         </EditText>
 
         <EditText
@@ -47,7 +51,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="password">
+            android:textSize="20sp"
+            android:inputType="text"
+            android:hint="@string/password"
+            android:autofillHints="password">
         </EditText>
 
         <Button
@@ -55,7 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="Login">
+            android:textSize="20sp"
+            android:text="@string/login">
         </Button>
 
     </LinearLayout>
@@ -74,19 +82,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:layout_marginRight="10dp"
-            android:text="Don't have an account?"
+            android:textSize="16sp"
+            android:text="@string/don_t_have_an_account"
             />
 
         <Button
             android:id="@+id/gotosignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:background="?android:attr/selectableItemBackground"
             />
 

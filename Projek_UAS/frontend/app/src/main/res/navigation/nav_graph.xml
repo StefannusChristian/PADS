@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_groupFragment"
+            app:destination="@id/groupFragment" />
     </fragment>
 
     <fragment
@@ -96,6 +99,16 @@
         tools:layout="@layout/transaction_fragment" >
         <action
             android:id="@+id/action_transactionFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="com.example.salesapp.Group.GroupFragment"
+        android:label="GroupFragment"
+        tools:layout="@layout/group_fragment">
+
+        <action
+            android:id="@+id/action_groupFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
 

@@ -1,16 +1,10 @@
 package com.example.salesapp
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.salesapp.Login.LoginViewModel
-import com.example.salesapp.SharedViewModel.SharedViewModel
 import com.example.salesapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -18,8 +12,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavView: BottomNavigationView
-    private val sharedViewModel: SharedViewModel by viewModels()
-    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         bottomNavView = binding.bottomNavView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
         bottomNavView.setupWithNavController(navController)
 
@@ -46,22 +39,24 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.cartFragment)
                     true
                 }
-                R.id.customersFragmentItem ->{
+                R.id.customersFragmentItem -> {
                     navController.navigate(R.id.customerFragment)
                     true
                 }
-                R.id.transactionFragmentItem ->{
+                R.id.transactionFragmentItem -> {
                     navController.navigate(R.id.transactionFragment)
                     true
                 }
-                R.id.inventoryFragmentItem ->{
+                R.id.inventoryFragmentItem -> {
                     navController.navigate(R.id.inventoryFragment)
+                    true
+                }
+                R.id.groupFragmentItem -> {
+                    navController.navigate(R.id.groupFragment)
                     true
                 }
                 else -> false
             }
         }
     }
-
-
 }
