@@ -56,7 +56,7 @@ class TransactionFragment: Fragment() {
     }
 
     private fun setupRecyclerView() {
-        transactionAdapter = TransactionAdapter()
+        transactionAdapter = TransactionAdapter(context)
         binding.recyclerView.adapter = transactionAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 

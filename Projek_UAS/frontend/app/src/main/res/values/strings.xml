@@ -35,14 +35,32 @@
     <string name="cart">Cart</string>
     <string name="transaction">Transaction</string>
     <string name="home">Home</string>
+    <string name="product_image">Product Image</string>
+    <string name="produk_kami">Produk Kami</string>
+    <string name="customer_transaction_name">Customer Name: %s</string>
+    <string name="number_of_orders_transaction">Number of Order: %s</string>
+    <string name="order_price_transaction">Total Price: %s</string>
+    <string name="order_id_transaction">Order ID: %s</string>
+    <string name="jason_jobdesc">Handles the development of the Rest API and designs the database structure for the application.</string>
+    <string name="stef_jobdesc">Responsible for developing and implementing the Home, Promo, Customer, and Cart Fragments in the application.</string>
+    <string name="evan_jobdesc">Responsible of developing the Transaction and Inventory Fragments, as well as the Sign Up and Login Fragments for the application.</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="email">email</string>
+    <string name="name">name</string>
+    <string name="create_account">Create Account</string>
+    <string name="promo_percent_string">%1$s %%</string>
+    <string name="description">Description</string>
     <string-array name="customer_sort_options">
         <item>Sort By</item>
-        <item>Sort By Name</item>
-        <item>Sort By Address</item>
+        <item>Name</item>
+        <item>Address</item>
     </string-array>
     <string-array name="inventory_sort_options">
         <item>Sort By</item>
-        <item>Sort By Name</item>
-        <item>Sort By Address</item>
+        <item>Available</item>
+        <item>Ordered</item>
+        <item>Total</item>
     </string-array>
+
 </resources>

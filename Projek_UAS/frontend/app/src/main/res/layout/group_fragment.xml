@@ -14,7 +14,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:src="@drawable/jason"
             android:scaleType="centerCrop"
@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Responsible for UI design and implementation."
+                android:text="@string/jason_jobdesc"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -65,7 +65,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/anggota_kelompok_2"
             android:scaleType="centerCrop"
@@ -101,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Responsible for UI design and implementation."
+                android:text="@string/stef_jobdesc"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -116,7 +116,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:src="@drawable/evan"
             android:scaleType="centerCrop"
@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Responsible for UI design and implementation."
+                android:text="@string/evan_jobdesc"
                 android:textSize="16sp" />
 
         </LinearLayout>

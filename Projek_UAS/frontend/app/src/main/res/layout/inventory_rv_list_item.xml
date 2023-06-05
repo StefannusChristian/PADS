@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/title_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,26 +30,29 @@
             android:id="@+id/namaprod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Produk"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/availqty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="avail_qty"/>
+            android:textSize="16sp"
+            />
 
         <TextView
             android:id="@+id/orderqty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="order_qty"/>
+            android:textSize="16sp"
+            />
 
         <TextView
             android:id="@+id/totalqty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="total_qty"/>
+            android:textSize="16sp"
+            />
 
     </LinearLayout>
 

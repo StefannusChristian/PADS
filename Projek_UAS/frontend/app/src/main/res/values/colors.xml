@@ -10,4 +10,6 @@
     <color name="primary_green">#03AC0E</color>
     <color name="secondary_green">#4FD15A</color>
     <color name="third_green">#80EB93</color>
+    <color name="red_light_background">#FFDBE2</color>
+    <color name="red_text">#F94D63</color>
 </resources>

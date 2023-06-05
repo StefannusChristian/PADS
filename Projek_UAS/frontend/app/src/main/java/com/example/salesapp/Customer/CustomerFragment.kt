@@ -94,20 +94,6 @@ class CustomerFragment : Fragment(), CustomerAdapter.OnItemClickCallback {
         customerViewModel.unsubscribeCustomer(PatchCustomerRequest(sales_username, customer_name),sales_username)
     }
 
-    private fun showSortDialog() {
-        val options = arrayOf("Name", "Address")
-
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Sort By")
-            .setItems(options) { _, which ->
-                when (which) {
-                    0 -> sortByName()
-                    1 -> sortByAddress()
-                }
-            }
-            .show()
-    }
-
     private fun showAddDialog() {
         val dialog = Dialog(requireContext())
         val addCustomerBinding = CustomerAddCustPopupBinding.inflate(dialog.layoutInflater)

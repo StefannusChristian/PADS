@@ -14,8 +14,15 @@
         android:gravity="center"
         android:layout_marginHorizontal="60dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
-        >
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60sp"
+            android:layout_marginBottom="30dp"
+            android:textStyle="bold"
+            android:text="@string/sales_sje" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:inputType="text"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:hint="@string/username"
             android:autofillHints="username">
         </EditText>
@@ -51,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:inputType="text"
             android:hint="@string/password"
             android:autofillHints="password">
@@ -66,6 +73,13 @@
             android:text="@string/login">
         </Button>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@mipmap/logo"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/logo" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -76,15 +90,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
-        >
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="@string/don_t_have_an_account"
-            />
+            android:text="@string/don_t_have_an_account" />
 
         <Button
             android:id="@+id/gotosignup"
@@ -94,8 +106,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:text="@string/sign_up"
-            android:background="?android:attr/selectableItemBackground"
-            />
+            android:background="?android:attr/selectableItemBackground" />
 
     </LinearLayout>
 

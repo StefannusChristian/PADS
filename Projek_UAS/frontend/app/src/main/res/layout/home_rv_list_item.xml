@@ -13,18 +13,54 @@
 
         <ImageView
             android:id="@+id/productImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:scaleType="centerCrop"
-            android:contentDescription="Image" />
+            android:contentDescription="@string/product_image" />
 
         <TextView
             android:id="@+id/productDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            >
+
+            <TextView
+                android:id="@+id/promo_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/red_light_background"
+                android:textColor="@color/red_text"
+                android:textStyle="bold"
+                android:padding="5dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/no_promo_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                >
+
+            </TextView>
+
+        </LinearLayout>
 
     </LinearLayout>
 

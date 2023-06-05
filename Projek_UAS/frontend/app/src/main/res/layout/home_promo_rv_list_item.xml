@@ -17,15 +17,24 @@
             android:scaleType="centerInside"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
-            android:contentDescription="Image" />
+            android:contentDescription="@string/product_image" />
 
         <TextView
             android:id="@+id/productDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

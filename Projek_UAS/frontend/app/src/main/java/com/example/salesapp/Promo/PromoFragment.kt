@@ -2,6 +2,7 @@ package com.example.salesapp.Promo
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -45,7 +46,7 @@ class PromoFragment : Fragment() {
 
         setupRecyclerViews()
 
-        promoAdapter.setOnItemClickCallback(object: PromoAdapter.OnItemClickCallback {
+        promoAdapter.setOnItemClickCallback(object : PromoAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ProductResponse) {
                 showProductDetailDialog(data)
             }
@@ -67,7 +68,7 @@ class PromoFragment : Fragment() {
     private fun setupRecyclerViews() {
         binding.rvPromo.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(context,2)
+            layoutManager = GridLayoutManager(context, 2)
             adapter = promoAdapter
         }
     }
@@ -89,8 +90,8 @@ class PromoFragment : Fragment() {
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
-        val productPromo = dialogBinding.dialogProductPromo
-        val productId = dialogBinding.dialogProductId
+        val productPromo = dialogBinding.dialogPromoPercentage
+        val productNoPromoPrice = dialogBinding.dialogNoPromoPrice
 
         productImage.apply {
             Glide.with(requireContext())
@@ -99,12 +100,15 @@ class PromoFragment : Fragment() {
         }
 
         productName.text = productResponse.name
-
-        productPrice.text = getString(R.string.price_tag,productResponse.price.toString())
+        productPrice.text = getString(R.string.price_tag, productResponse.promo_price.toString())
         productDescription.text = productResponse.description
-        productPromo.text = productResponse.promo.toString()
-        productId.text = getString(R.string.product_id,productResponse.id.toString())
-
+        productPromo.text =
+            context?.getString(R.string.promo_percent_string, productResponse.promo.toString())
+                ?: ""
+        productNoPromoPrice.text =
+            context?.getString(R.string.price_tag, productResponse.price.toString()) ?: ""
+        productNoPromoPrice.paintFlags =
+            productNoPromoPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         val addToCartBtn: Button = dialogBinding.addToCartBtn
         val qtyET: EditText = dialogBinding.addToCartQty
@@ -124,7 +128,11 @@ class PromoFragment : Fragment() {
         addToCartBtn.setOnClickListener {
             val qty: Int = dialogBinding.addToCartQty.text.toString().toIntOrNull() ?: 0
             val productToAdd =
-                AddToCartRequest(sales_username = sharedViewModel.salesUsername, product_id = productResponse.id, qty = qty)
+                AddToCartRequest(
+                    sales_username = sharedViewModel.salesUsername,
+                    product_id = productResponse.id,
+                    qty = qty
+                )
             homeViewModel.addToCart(productToAdd)
             dialog.dismiss()
         }

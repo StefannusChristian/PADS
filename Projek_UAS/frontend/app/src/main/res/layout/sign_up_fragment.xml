@@ -20,9 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textSize="27dp"
+            android:textSize="36sp"
             android:textStyle="bold"
-            android:text="Create Account">
+            android:text="@string/create_account">
         </TextView>
 
 
@@ -31,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:hint="username">
+            android:textSize="24sp"
+            android:hint="@string/username">
         </EditText>
 
         <EditText
@@ -39,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="password">
+            android:textSize="24sp"
+            android:hint="@string/password">
         </EditText>
 
         <EditText
@@ -47,7 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="name">
+            android:textSize="24sp"
+            android:hint="@string/name">
         </EditText>
 
         <EditText
@@ -55,7 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="email">
+            android:textSize="24sp"
+            android:hint="@string/email">
         </EditText>
 
         <Button
@@ -63,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="Sign Up">
+            android:text="@string/sign_up">
         </Button>
 
     </LinearLayout>
@@ -82,18 +86,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:layout_marginRight="10dp"
-            android:text="Already have an account?"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/already_have_an_account"
             />
 
         <Button
             android:id="@+id/gotosignin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:text="Sign in"
+            android:text="@string/sign_in"
             android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/black"
             />

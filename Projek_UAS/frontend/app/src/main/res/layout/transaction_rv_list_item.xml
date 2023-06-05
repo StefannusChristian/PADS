@@ -10,7 +10,6 @@
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
         android:textSize="16sp"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,11 +44,21 @@
         android:id="@+id/customerNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Customer Name"
-        android:textSize="18sp"
-        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textColor="#888888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borderlineView"
+        android:layout_marginTop="8dp" />
+
+    <!-- Order Id -->
+    <TextView
+        android:id="@+id/orderTransactionID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customerNameTextView"
         android:layout_marginTop="8dp" />
 
     <!-- Total Quantity -->
@@ -57,11 +66,10 @@
         android:id="@+id/totalQuantityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Quantity"
         android:textSize="16sp"
         android:textColor="#888888"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customerNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/orderTransactionID"
         android:layout_marginTop="4dp" />
 
     <!-- Total Price -->
@@ -69,7 +77,6 @@
         android:id="@+id/totalPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Price"
         android:textSize="16sp"
         android:textColor="#888888"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +89,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Status"
         android:textColor="#FF0000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/totalPriceTextView"

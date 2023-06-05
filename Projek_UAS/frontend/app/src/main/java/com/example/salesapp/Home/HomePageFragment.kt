@@ -1,6 +1,8 @@
 package com.example.salesapp.Home
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -31,8 +35,8 @@ class HomePageFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var toolBarBinding: ToolbarHomeLayoutBinding
-    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(sharedViewModel) }
-    private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter() }
+    private val homeAdapter: HomePageAdapter by lazy { HomePageAdapter(context,sharedViewModel) }
+    private val homePromoAdapter: HomePagePromoAdapter by lazy { HomePagePromoAdapter(context) }
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -133,8 +137,8 @@ class HomePageFragment : Fragment() {
         val productName = dialogBinding.dialogProductName
         val productPrice = dialogBinding.dialogProductPrice
         val productDescription = dialogBinding.dialogProductDescription
-        val productPromo = dialogBinding.dialogProductPromo
-        val productId = dialogBinding.dialogProductId
+        val productPromo = dialogBinding.dialogPromoPercentage
+        val productNoPromoPrice = dialogBinding.dialogNoPromoPrice
 
         productImage.apply {
             Glide.with(requireContext())
@@ -143,12 +147,11 @@ class HomePageFragment : Fragment() {
         }
 
         productName.text = productResponse.name
-
-        productPrice.text = getString(R.string.price_tag,productResponse.price.toString())
+        productPrice.text = getString(R.string.price_tag,productResponse.promo_price.toString())
         productDescription.text = productResponse.description
-        productPromo.text = productResponse.promo.toString()
-        productId.text = getString(R.string.product_id,productResponse.id.toString())
-
+        productPromo.text = context?.getString(R.string.promo_percent_string,productResponse.promo.toString()) ?: ""
+        productNoPromoPrice.text = context?.getString(R.string.price_tag,productResponse.price.toString()) ?: ""
+        productNoPromoPrice.paintFlags = productNoPromoPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         val addToCartBtn: Button = dialogBinding.addToCartBtn
         val qtyET: EditText = dialogBinding.addToCartQty

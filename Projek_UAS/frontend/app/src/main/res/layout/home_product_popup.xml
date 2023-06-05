@@ -43,29 +43,39 @@
                 >
             </TextView>
 
-            <TextView
-                android:id="@+id/dialogProductPromo"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:layout_marginVertical="10dp"
                 >
-            </TextView>
 
-            <TextView
-                android:id="@+id/dialogProductId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                >
-            </TextView>
+                <TextView
+                    android:id="@+id/dialog_promo_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/red_light_background"
+                    android:textColor="@color/red_text"
+                    android:textStyle="bold"
+                    android:padding="5dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dialog_no_promo_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="12sp"
-                android:text="Description"
+                android:text="@string/description"
                 >
             </TextView>
 

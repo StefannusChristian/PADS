@@ -1,16 +1,16 @@
 package com.example.salesapp.Home
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
+import com.example.salesapp.R
 import com.example.salesapp.databinding.HomeRvListItemBinding
 
-class HomePagePromoAdapter : RecyclerView.Adapter<HomePagePromoAdapter.HomeViewHolder>() {
+class HomePagePromoAdapter(private val context: Context?) : RecyclerView.Adapter<HomePagePromoAdapter.HomeViewHolder>() {
 
     private val promosList = mutableListOf<ProductResponse>()
 
@@ -22,19 +22,22 @@ class HomePagePromoAdapter : RecyclerView.Adapter<HomePagePromoAdapter.HomeViewH
     inner class HomeViewHolder(private val binding: HomeRvListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val productImage = binding.productImage
         private val productDesc = binding.productDescription
+        private val productPriceNoDisc = binding.noPromoPrice
+        private val productDisc = binding.promoPercentage
 
 
         fun bind(productResponse: ProductResponse) {
-            val requestOptions = RequestOptions().transform(RoundedCorners(8))
             with(binding) {
                 Glide.with(productImage.context)
                     .load(productResponse.img_link)
-                    .apply(requestOptions)
-                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(productImage)
                 productDesc.text = productResponse.name
+                productPrice.text =
+                    context?.getString(R.string.price_tag,productResponse.promo_price.toString()) ?: ""
+                productPriceNoDisc.text = context?.getString(R.string.price_tag,productResponse.price.toString()) ?: ""
+                productDisc.text = context?.getString(R.string.promo_percent_string,productResponse.promo.toString()) ?: ""
+                productPriceNoDisc.paintFlags = productPriceNoDisc.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             }
         }
     }
